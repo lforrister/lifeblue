@@ -7,7 +7,7 @@
                     <Select v-if="q.type === 'select'" :field="q" />
                     <Checkbox v-else-if="q.type === 'checkbox'" v-model="q.input" :field="q" />
                     <Radio v-else-if="q.type === 'radio'" v-model="q.input" :field="q" />
-                    <DatePicker v-else-if="q.type === 'date'" :field="q" />
+                    <DatePicker v-else-if="q.type === 'date'" v-model="q.input" :field="q" />
                     <Text v-else v-model="q.input" :field="q" />
                 </div>
             </div>
@@ -33,7 +33,6 @@
     import Text from './Fields/Text.vue'
     
     // == Declaring Variables == //
-    const message = ref('')
     const currentQ = ref(0)
     const quiz = ref([
         {
