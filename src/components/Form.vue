@@ -2,7 +2,7 @@
     <div class="form__container">
         <ProgressTracker :percent="progress"/>
 
-        <form>
+        <form class="form__form">
             <div v-for="field in displayForm">
                 <div v-if="display === 'single' || editable.includes(field.id)">
                     <Select v-if="field.type === 'select'" v-model="field.input" :field="field" />
@@ -34,7 +34,7 @@
             </div>
 
             <div v-if="display === 'single'" class="form__buttons">
-                <button v-if="currentQ > 0" @click.prevent="prev">
+                <button v-if="currentQ > 0" @click.prevent="prev" class="forms__back-btn">
                     Back
                 </button>
                 <button v-if="currentQ < (quiz.length - 1)" @click.prevent="next" :class="disabled ? 'is-disabled' : ''">
@@ -74,11 +74,10 @@
         {
             input: ref(''),
             type: 'input',
-            id: 'q1',
-            name: 'q1',
-            label: 'Question One',
-            required: false,
-            errorMessage: 'Please fill out the question.'
+            id: 'first_name',
+            name: 'First Name',
+            label: 'What is your first name?',
+            required: true,
         },
         {
             input: ref(''),
@@ -237,7 +236,7 @@
     })
 
     const progress = computed(() => {
-        let p = (currentQ.value + 1) / quiz.value.length
+        let p = currentQ.value / quiz.value.length
         return Math.round(p * 100)
     })
 
@@ -296,8 +295,16 @@
 
 <style lang="scss">
     .form__container {
-        border: 1px solid black;
+        position: relative;
         padding: $spacing-40;
+        width: 500px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        border-radius: 12px;
+        background: white;
+    }
+
+    .form__form {
+        margin-top: $spacing-8;
     }
 
     .form__buttons {
@@ -306,6 +313,10 @@
         button {
             @include button-primary;
         }
+    }
+
+    .forms__back-btn {
+        margin-right: $spacing-8;
     }
 
 </style>

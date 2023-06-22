@@ -2,11 +2,17 @@
 @import '../variables/grid.scss';
 
 @mixin button-primary {
-    padding: $spacing-8;
-    background: pink;
+    padding: $spacing-8 $spacing-24;
+    background: $blue-deep;
+    color: white;
+    font-family: $raleway;
+    font-weight: 600;
+    border: none;
+    text-transform: uppercase;
 
     &.is-disabled {
-        background: lightgray;
+        background: $grey-light;
+        color: $charcoal;
 
         &:hover {
             cursor: not-allowed;

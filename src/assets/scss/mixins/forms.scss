@@ -1,14 +1,28 @@
 @import '../variables/grid.scss';
+@import '../variables/fonts.scss';
+@import '../variables/colors.scss';
 
 // ==== INPUT ==== //
 
 @mixin input {
     width: 100%;
-    margin-top: $spacing-8;
+    margin-top: $spacing-16;
+    border-color: transparent;
+    border: 1px solid $silver;
+    border-radius: 4px;
+    padding: 6px 8px;
+    font-family: $raleway;
+
+    &:focus {
+        outline: none !important;
+        border: 2px solid $blue-deep;
+    }
 }
 
 @mixin input-label {
     width: 100%;
+    font-family: $raleway;
+    font-weight: 600;
 }
 
 .forms__input {
@@ -22,7 +36,15 @@
 // ==== ERRORS
 
 @mixin error {
-    color: red;
+    color: $red;
+    border: 1px solid $red;
+    border-radius: 4px;
+    background: rgba(237, 33, 58, 0.05);
+    font-family: $raleway;
+    padding: $spacing-8;
+    font-size: 12px;
+    font-weight: 600;
+    width: 100%;
 }
 
 .forms__error {

@@ -18,6 +18,7 @@ import Form from '../components/Form.vue'
   .homeView__wrapper {
     @include wrapper;
     min-height: 100vh;
+    background: $grey-light;
   }
 
   .homeView__form {
