@@ -7,6 +7,7 @@
             :type="field.type"
             :id="field.id"
             :name="field.name"
+            :value="field.input"
             @input="updateInput($event.target.value)"
             class="forms__input"
         >

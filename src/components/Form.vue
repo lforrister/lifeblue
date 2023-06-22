@@ -4,6 +4,7 @@
         <form>
           
             <div v-for="(q, index) in displayTest">
+                {{ q.input }}
                 <div v-if="display === 'single'">
                     <Select v-if="q.type === 'select'" v-model="q.input" :field="q" />
                     <Checkbox v-else-if="q.type === 'checkbox'" v-model="q.input" :field="q" />
