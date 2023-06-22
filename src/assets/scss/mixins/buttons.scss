@@ -1,0 +1,15 @@
+
+@import '../variables/grid.scss';
+
+@mixin button-primary {
+    padding: $spacing-8;
+    background: pink;
+
+    &.is-disabled {
+        background: lightgray;
+
+        &:hover {
+            cursor: not-allowed;
+        }
+    }
+}

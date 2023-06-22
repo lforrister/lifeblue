@@ -10,7 +10,7 @@
                     <DatePicker v-else-if="q.type === 'date'" v-model="q.input" :field="q" />
                     <Text v-else v-model="q.input" :field="q" @validate-input="validateInput"/>
 
-                    <p v-if="errors.find((err) => err.id === q.id)">
+                    <p v-if="errors.find((err) => err.id === q.id)" class="forms__error">
                         {{ q.errorMessage }}
                     </p>
                 </div>
@@ -20,7 +20,7 @@
                 <button v-if="currentQ > 0" @click.prevent="prev">
                     Back
                 </button>
-                <button v-if="currentQ < (quiz.length - 1)" @click.prevent="next">
+                <button v-if="currentQ < (quiz.length - 1)" @click.prevent="next" :class="disabled ? 'is-disabled' : ''">
                     Next
                 </button>
             </div>
@@ -31,15 +31,17 @@
 <script setup>
     import Checkbox from './Fields/Checkbox.vue'
     import DatePicker from './Fields/DatePicker.vue'
+    import { computed, onMounted, ref } from 'vue'
     import Radio from './Fields/Radio.vue'
-    import { ref } from 'vue'
     import Select from './Fields/Select.vue'
     import Text from './Fields/Text.vue'
     import { validation } from '../plugins/utils'
+
     
     // == Declaring Variables == //
     const currentQ = ref(0)
     const errors = ref([])
+    const validated = ref(false)
     const quiz = ref([
         {
             input: ref(''),
@@ -47,7 +49,7 @@
             id: 'q1',
             name: 'q1',
             label: 'Question One',
-            required: true,
+            required: false,
             errorMessage: 'Please fill out the question.'
         },
         {
@@ -160,16 +162,42 @@
 
     ])
 
+    // == Computed Properties == //
+    const current = computed(() => {
+        return quiz.value[currentQ.value]
+    }) 
+
+    const required = computed(() => {
+        return current.value.required
+    })
+
+    const needsValidation = computed(() => {
+        return current.value.validate
+    })
+
+    const disabled = computed(() => {
+      
+        if (required.value && needsValidation.value) {
+            return !current.value.input.length || !validated.value
+        } else if (required.value) {
+            return !current.value.input.length
+        } 
+
+        return false
+    })
+
+
     // == Functions == //
     function prev() {
         currentQ.value = currentQ.value - 1 
     }
 
     function next() {
-        console.log('clicked!')
-        console.log('current', currentQ.value)
-        currentQ.value = currentQ.value + 1
-        console.log('after click', currentQ.value)
+        if (!disabled.value) {
+            currentQ.value = currentQ.value + 1
+        }
+
+        validated.value = false
     }
 
     // @todo - move to its own file so it can be reused 
@@ -188,7 +216,6 @@
     function fetchResults(field) {
         if (field.validate) {
             const valid = validation(field.type, field.input)
-            console.log('valid? ', valid)
 
             if(valid) {
                 errors.value = errors.value.filter((err) => err.id !== field.id)
@@ -198,8 +225,9 @@
                     message: field.errorMessage ?? field.errorMessage
                 })
             }
-            
-        }
+        } 
+
+        validated.value = errors.value.length ? false : true
         
     }
 
@@ -209,6 +237,14 @@
     .form__container {
         border: 1px solid black;
         padding: $spacing-40;
+    }
+
+    .form__buttons {
+        margin-top: $spacing-16;
+
+        button {
+            @include button-primary;
+        }
     }
 
 </style>

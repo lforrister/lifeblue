@@ -18,3 +18,13 @@
 .forms__input-label {
     @include input-label;
 }
+
+// ==== ERRORS
+
+@mixin error {
+    color: red;
+}
+
+.forms__error {
+    @include error;
+}
