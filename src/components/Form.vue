@@ -1,34 +1,39 @@
 <template>
     <div class="form__container">
         <ProgressTracker :percent="progress"/>
-        <form>
-          
-            <div v-for="(q, index) in displayTest">
-                {{ q.input }}
-                <div v-if="display === 'single'">
-                    <Select v-if="q.type === 'select'" v-model="q.input" :field="q" />
-                    <Checkbox v-else-if="q.type === 'checkbox'" v-model="q.input" :field="q" />
-                    <Radio v-else-if="q.type === 'radio'" v-model="q.input" :field="q" />
-                    <DatePicker v-else-if="q.type === 'date'" v-model="q.input" :field="q" />
-                    <Text v-else v-model="q.input" :field="q" @validate-input="triggerValidate"/>
 
-                    <p v-if="errors.find((err) => err.id === q.id)" class="forms__error">
-                        {{ q.errorMessage }}
+        <form>
+            <div v-for="field in displayForm">
+                <div v-if="display === 'single' || editable.includes(field.id)">
+                    <Select v-if="field.type === 'select'" v-model="field.input" :field="field" />
+                    <Checkbox v-else-if="field.type === 'checkbox'" v-model="field.input" :field="field" />
+                    <Radio v-else-if="field.type === 'radio'" v-model="field.input" :field="field" />
+                    <DatePicker v-else-if="field.type === 'date'" v-model="field.input" :field="field" />
+                    <Text v-else v-model="field.input" :field="field" @validate-input="triggerValidate"/>
+
+                    <p v-if="errors.find((err) => err.id === field.id)" class="forms__error">
+                        {{ field.errorMessage }}
                     </p>
+
+                    <button v-if="editable.includes(field.id)" @click.prevent="save(field)">Save</button>
                 </div>
 
                 <div v-else>
-                    <h3>
-                        {{ q.label }}
-                    </h3>
-                    <p>
-                        {{ q.input }}
-                    </p>
+                    <div v-if="!editable.includes(field.id)">
+                        <h3>
+                            {{ field.label }}
+                        </h3>
+                        <p>
+                            {{ field.input }}
+                        </p>
+                        <button @click.prevent="edit(field)">EDIT</button>
+                    </div>
+                
                 </div>
                 
             </div>
 
-            <div class="form__buttons">
+            <div v-if="display === 'single'" class="form__buttons">
                 <button v-if="currentQ > 0" @click.prevent="prev">
                     Back
                 </button>
@@ -40,10 +45,6 @@
                 </button>
             </div>
             
-
-            <!---------- @todo move this into its own component eventually  ------------------>
-
-
         </form>
     </div>
 </template>
@@ -53,7 +54,6 @@
     import DatePicker from './Fields/DatePicker.vue'
     import { computed, onMounted, ref } from 'vue'
     import ProgressTracker from './ProgressTracker.vue'
-    import Review from './Review.vue'
     import Radio from './Fields/Radio.vue'
     import Select from './Fields/Select.vue'
     import Text from './Fields/Text.vue'
@@ -65,6 +65,7 @@
     const errors = ref([])
     const validated = ref(false)
     const display = ref('single')
+    const editable = ref([])
     const quiz = ref([
         {
             input: ref(''),
@@ -190,7 +191,7 @@
         return quiz.value[currentQ.value]
     }) 
 
-    const displayTest = computed(() => {
+    const displayForm = computed(() => {
         let d = []
         if (display.value === 'single') {
             d.push(current.value)
@@ -258,8 +259,20 @@
     }
 
     function updateDisplay(type) {
-        console.log('type', type)
         display.value = type
+    }
+
+    function edit(field) {
+        editable.value.push(field.id)
+    }
+
+    function save(field) {
+        let item = editable.value.find(i => i === field.id)
+        let index = editable.value.indexOf(item)
+
+        if (index > -1) {
+            editable.value.splice(index, 1)
+        }
     }
 
 </script>
