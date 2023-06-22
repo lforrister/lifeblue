@@ -19,14 +19,16 @@
                 </div>
 
                 <div v-else>
-                    <div v-if="!editable.includes(field.id)">
-                        <h3>
+                    <div v-if="!editable.includes(field.id)" class="form__full">
+                        <div class="form__row">
+                            <h3>
                             {{ field.label }}
-                        </h3>
-                        <p>
+                            </h3>
+                            <button @click.prevent="edit(field)" class="form__edit">EDIT</button>
+                        </div>
+                        <p class="form__answer">
                             {{ field.input }}
                         </p>
-                        <button @click.prevent="edit(field)">EDIT</button>
                     </div>
                 
                 </div>
@@ -317,6 +319,28 @@
 
     .forms__back-btn {
         margin-right: $spacing-8;
+    }
+
+    .form__answer {
+        font-family: $raleway;
+        border-bottom: 1px solid $silver;
+        padding-bottom: $spacing-8;
+    }
+
+    .form__full {
+        margin-bottom: $spacing-16;
+    }
+
+    .form__row {
+        display: flex;
+        justify-content: space-between;
+        margin: $spacing-24 0;
+    }
+
+    .form__edit {
+        font-family: $raleway;
+        font-size: 12px;
+        padding: $spacing-4 $spacing-8;
     }
 
 </style>

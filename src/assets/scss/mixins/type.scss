@@ -1,0 +1,14 @@
+@import '../variables/fonts.scss';
+
+@mixin h3 {
+    font-family: $raleway;
+    margin: 0;
+}
+
+h3, .type__h3 {
+    @include h3;
+}
+
+p {
+    margin: 0;
+}
