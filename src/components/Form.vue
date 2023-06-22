@@ -1,5 +1,6 @@
 <template>
     <div class="form__container">
+        <ProgressTracker :percent="progress"/>
         <form>
             <div v-for="(q, index) in quiz">
                 <div v-if="index === currentQ">
@@ -32,6 +33,7 @@
     import Checkbox from './Fields/Checkbox.vue'
     import DatePicker from './Fields/DatePicker.vue'
     import { computed, onMounted, ref } from 'vue'
+    import ProgressTracker from './ProgressTracker.vue'
     import Radio from './Fields/Radio.vue'
     import Select from './Fields/Select.vue'
     import Text from './Fields/Text.vue'
@@ -184,6 +186,11 @@
         } 
 
         return false
+    })
+
+    const progress = computed(() => {
+        let p = (currentQ.value + 1) / quiz.value.length
+        return Math.round(p * 100)
     })
 
 
