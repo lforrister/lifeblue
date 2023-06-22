@@ -1,12 +1,14 @@
 <script setup>
 import Form from '../components/Form.vue'
+import LocalTest from '../components/LocalTest.vue'
 </script>
 
 <template>
   <main>
     <div class="homeView__wrapper">
       <div class="homeView__form">
-          <Form />
+        <LocalTest />
+          <!-- <Form /> -->
       </div>
     </div>
   </main>
