@@ -1,25 +1,28 @@
 <template>
     <div class="form__container">
-        HERE IS MY FORM
-        <div v-for="(q, index) in quiz">
-            <div v-if="index === currentQ">
-                <Select v-if="q.type === 'select'" :field="q" />
-                <Checkbox v-else-if="q.type === 'checkbox'" :field="q" />
-                <Radio v-else-if="q.type === 'radio'" :field="q" />
-                <DatePicker v-else-if="q.type === 'date'" :field="q" />
-                <Text v-else :field="q" />
-                {{ q.label }}
-            </div>
-        </div>
+        HERE IS MY FORM 
 
-        <div class="form__buttons">
-            <button v-if="currentQ > 0" @click="prev">
-                Back
-            </button>
-            <button v-if="currentQ < (quiz.length - 1)" @click="next">
-                Next
-            </button>
-        </div>
+        <form>
+            <div v-for="(q, index) in quiz">
+                INPUT: {{ q.input }}
+                <div v-if="index === currentQ">
+                    <Select v-if="q.type === 'select'" :field="q" />
+                    <Checkbox v-else-if="q.type === 'checkbox'" :field="q" />
+                    <Radio v-else-if="q.type === 'radio'" :field="q" />
+                    <DatePicker v-else-if="q.type === 'date'" :field="q" />
+                    <Text v-else v-model="q.input" />
+                </div>
+            </div>
+
+            <div class="form__buttons">
+                <button v-if="currentQ > 0" @click.prevent="prev">
+                    Back
+                </button>
+                <button v-if="currentQ < (quiz.length - 1)" @click.prevent="next">
+                    Next
+                </button>
+            </div>
+        </form>
     </div>
 </template>
 
@@ -32,6 +35,7 @@
     import Text from './Fields/Text.vue'
     
     // == Declaring Variables == //
+    const message = ref('')
     const currentQ = ref(0)
     const quiz = ref([
         {
@@ -107,6 +111,10 @@
         console.log('current', currentQ.value)
         currentQ.value = currentQ.value + 1
         console.log('after click', currentQ.value)
+    }
+
+    function updateInput() {
+        console.log('updating!')
     }
 
 
