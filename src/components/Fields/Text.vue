@@ -1,28 +1,29 @@
 <template>
-    <div>
+    <fieldset v-if="field">
+        <label :for="field.id">
+            {{ field.label }}
+        </label>
         <input
-            type="text"
-            :value="modelValue"
-            @input="test($event.target.value)"
+            :type="field.type"
+            :id="field.id"
+            :name="field.name"
+            @input="updateInput($event.target.value)"
         >
-    </div>
+    </fieldset>
 </template>
 
 <script setup>
-    import { ref } from 'vue'
-
     // == Define Props & Emits == //
     const emit = defineEmits(['update:modelValue'])
     const props = defineProps({
-        modelValue: {
-            type: String,
-            default: '',
-            required: true
+        field: {
+            type: Object,
+            default: null
         }
     })
 
-    function test(target) {
-        console.log('emitting!', target)
+    // == Functions == //
+    function updateInput(target) {
         emit('update:modelValue', target)
     }
 
