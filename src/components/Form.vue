@@ -8,7 +8,11 @@
                     <Checkbox v-else-if="q.type === 'checkbox'" v-model="q.input" :field="q" />
                     <Radio v-else-if="q.type === 'radio'" v-model="q.input" :field="q" />
                     <DatePicker v-else-if="q.type === 'date'" v-model="q.input" :field="q" />
-                    <Text v-else v-model="q.input" :field="q" />
+                    <Text v-else v-model="q.input" :field="q" @validate-input="validateInput"/>
+
+                    <p v-if="errors.find((err) => err.id === q.id)">
+                        {{ q.errorMessage }}
+                    </p>
                 </div>
             </div>
 
@@ -31,9 +35,11 @@
     import { ref } from 'vue'
     import Select from './Fields/Select.vue'
     import Text from './Fields/Text.vue'
+    import { validation } from '../plugins/utils'
     
     // == Declaring Variables == //
     const currentQ = ref(0)
+    const errors = ref([])
     const quiz = ref([
         {
             input: ref(''),
@@ -42,18 +48,27 @@
             name: 'q1',
             label: 'Question One',
             required: true,
-            validate: true,
             errorMessage: 'Please fill out the question.'
         },
         {
             input: ref(''),
             type: 'email',
-            id: 'q2',
-            name: 'q2',
-            label: 'Question Two',
+            id: 'email',
+            name: 'Email',
+            label: 'What is your email address?',
             required: true,
             validate: true,
-            errorMessage: 'Please fill out the question.'
+            errorMessage: 'Please enter a valid email address.'
+        },
+        {
+            input: ref(''),
+            type: 'phone',
+            id: 'phone',
+            name: 'Phone Number',
+            label: 'What is your phone number?',
+            required: true,
+            validate: true,
+            errorMessage: 'Please enter a valid phone number.'
         },
         {
             input: ref(''),
@@ -62,7 +77,6 @@
             name: 'q3',
             label: 'Question Three',
             required: true,
-            validate: true,
             errorMessage: 'Please fill out the question.',
             options: [
                 {   
@@ -89,7 +103,6 @@
             name: 'q4',
             label: 'Question Four',
             required: true,
-            validate: true,
             errorMessage: 'Please fill out the question.',
             options: [
                 {   
@@ -116,7 +129,6 @@
             name: 'q5',
             label: 'Question Five',
             required: true,
-            validate: true,
             errorMessage: 'Please fill out the question.',
             options: [
                 {   
@@ -143,7 +155,6 @@
             name: 'q6',
             label: 'Question Six',
             required: true,
-            validate: true,
             errorMessage: 'Please fill out the question.'
         },
 
@@ -161,10 +172,36 @@
         console.log('after click', currentQ.value)
     }
 
-    function updateInput() {
-        console.log('updating!')
+    // @todo - move to its own file so it can be reused 
+    function debounce(func, timeout = 1000) {
+        let timer 
+        return (...args) => {
+            clearTimeout(timer)
+            timer = setTimeout(() => {
+                func.apply(this, args)
+            }, timeout)
+        }
     }
 
+    const validateInput = debounce((field) => fetchResults(field))
+
+    function fetchResults(field) {
+        if (field.validate) {
+            const valid = validation(field.type, field.input)
+            console.log('valid? ', valid)
+
+            if(valid) {
+                errors.value = errors.value.filter((err) => err.id !== field.id)
+            } else {
+                errors.value.push({
+                    id: field.id,
+                    message: field.errorMessage ?? field.errorMessage
+                })
+            }
+            
+        }
+        
+    }
 
 </script>
 

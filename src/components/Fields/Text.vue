@@ -14,7 +14,7 @@
 
 <script setup>
     // == Define Props & Emits == //
-    const emit = defineEmits(['update:modelValue'])
+    const emit = defineEmits(['update:modelValue', 'validateInput'])
     const props = defineProps({
         field: {
             type: Object,
@@ -25,6 +25,7 @@
     // == Functions == //
     function updateInput(target) {
         emit('update:modelValue', target)
+        emit('validateInput', props.field)
     }
 
 </script>
