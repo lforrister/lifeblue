@@ -2,8 +2,7 @@
 @import '../variables/fonts.scss';
 @import '../variables/colors.scss';
 
-// ==== INPUT ==== //
-
+// === INPUT === //
 @mixin input {
     width: 100%;
     margin-top: $spacing-16;
@@ -33,7 +32,24 @@
     @include input-label;
 }
 
-// ==== ERRORS
+// === CHECKBOX/RADIO === //
+@mixin fieldset {
+    border: none;
+}
+
+@mixin options-label {
+    font-family: $raleway;
+}
+
+.forms__fieldset {
+    @include fieldset;
+}
+
+.forms__options-label {
+    @include options-label;
+}
+
+// ==== ERRORS ==== //
 
 @mixin error {
     color: $red;

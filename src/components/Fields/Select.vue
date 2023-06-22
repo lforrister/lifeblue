@@ -1,10 +1,10 @@
 <template>
     <div>
-        <label :for="field.id">
+        <label :for="field.id" class="forms__input-label">
             {{ field.label }}
         </label>
 
-        <select :name="field.name" :id="field.id" @change="updateInput($event.target.value)" >
+        <select :name="field.name" :id="field.id" @change="updateInput($event.target.value)" class="forms__input">
             <option 
                 v-for="option in field.options"
                 :value="option.value"

@@ -1,6 +1,6 @@
 <template>
-    <fieldset>
-        <legend> {{ field.label }} </legend>
+    <fieldset class="forms__fieldset">
+        <legend class="forms__input-label"> {{ field.label }} </legend>
         
         <div v-for="option in field.options">
             <input 
@@ -10,7 +10,7 @@
                 :value="option.value" 
                 v-model="checked"
                 @change="updateInput(checked)" />
-            <label :for="option.id">
+            <label :for="option.id" class="forms__options-label">
                 {{ option.label }}
             </label>
         </div>
