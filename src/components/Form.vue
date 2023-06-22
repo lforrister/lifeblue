@@ -9,7 +9,7 @@
                     <Checkbox v-else-if="q.type === 'checkbox'" v-model="q.input" :field="q" />
                     <Radio v-else-if="q.type === 'radio'" v-model="q.input" :field="q" />
                     <DatePicker v-else-if="q.type === 'date'" v-model="q.input" :field="q" />
-                    <Text v-else v-model="q.input" :field="q" @validate-input="validateInput"/>
+                    <Text v-else v-model="q.input" :field="q" @validate-input="triggerValidate"/>
 
                     <p v-if="errors.find((err) => err.id === q.id)" class="forms__error">
                         {{ q.errorMessage }}
@@ -37,7 +37,7 @@
     import Radio from './Fields/Radio.vue'
     import Select from './Fields/Select.vue'
     import Text from './Fields/Text.vue'
-    import { validation } from '../plugins/utils'
+    import { debouncing, validation } from '../plugins/utils'
 
     
     // == Declaring Variables == //
@@ -207,20 +207,9 @@
         validated.value = false
     }
 
-    // @todo - move to its own file so it can be reused 
-    function debounce(func, timeout = 1000) {
-        let timer 
-        return (...args) => {
-            clearTimeout(timer)
-            timer = setTimeout(() => {
-                func.apply(this, args)
-            }, timeout)
-        }
-    }
+    const triggerValidate = debouncing((field) => validateInput(field))
 
-    const validateInput = debounce((field) => fetchResults(field))
-
-    function fetchResults(field) {
+    function validateInput(field) {
         if (field.validate) {
             const valid = validation(field.type, field.input)
 
