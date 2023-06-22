@@ -44,6 +44,10 @@
                     Review
                 </button>
             </div>
+
+            <div v-else class="form__buttons">
+                <button :class="disabled ? 'is-disabled' : ''">Submit</button>
+            </div>
             
         </form>
     </div>
@@ -209,14 +213,27 @@
     })
 
     const disabled = computed(() => {
-      
-        if (required.value && needsValidation.value) {
-            return !current.value.input.length || !validated.value
-        } else if (required.value) {
-            return !current.value.input.length
-        } 
+        //@todo - in theory we can use the 'full' for both, but have to figure out the debonce
+        if (display.value === 'single') {
+            if (required.value && needsValidation.value) {
+                return !current.value.input.length || !validated.value
+            } else if (required.value) {
+                return !current.value.input.length
+            } 
 
-        return false
+            return false
+        }
+
+        if (display.value === 'full') {
+            let req = displayForm.value.filter((field) => field.required)
+            let inputs = req.filter((f) => f.input.length)
+
+            if (req.length != inputs.length || errors.value.length) {
+                return true
+            }
+
+            return false
+        }
     })
 
     const progress = computed(() => {
