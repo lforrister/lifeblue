@@ -2,9 +2,9 @@
     <div class="form__container">
         <ProgressTracker :percent="progress"/>
         <form>
-            <div v-for="(q, index) in quiz">
-                <div v-if="index === currentQ">
-                    INPUT: {{ q.input }}
+          
+            <div v-for="(q, index) in displayTest">
+                <div v-if="display === 'single'">
                     <Select v-if="q.type === 'select'" v-model="q.input" :field="q" />
                     <Checkbox v-else-if="q.type === 'checkbox'" v-model="q.input" :field="q" />
                     <Radio v-else-if="q.type === 'radio'" v-model="q.input" :field="q" />
@@ -15,6 +15,16 @@
                         {{ q.errorMessage }}
                     </p>
                 </div>
+
+                <div v-else>
+                    <h3>
+                        {{ q.label }}
+                    </h3>
+                    <p>
+                        {{ q.input }}
+                    </p>
+                </div>
+                
             </div>
 
             <div class="form__buttons">
@@ -24,7 +34,15 @@
                 <button v-if="currentQ < (quiz.length - 1)" @click.prevent="next" :class="disabled ? 'is-disabled' : ''">
                     Next
                 </button>
+                <button v-if="currentQ === (quiz.length - 1)"  @click.prevent="updateDisplay('full')">
+                    Review
+                </button>
             </div>
+            
+
+            <!---------- @todo move this into its own component eventually  ------------------>
+
+
         </form>
     </div>
 </template>
@@ -34,6 +52,7 @@
     import DatePicker from './Fields/DatePicker.vue'
     import { computed, onMounted, ref } from 'vue'
     import ProgressTracker from './ProgressTracker.vue'
+    import Review from './Review.vue'
     import Radio from './Fields/Radio.vue'
     import Select from './Fields/Select.vue'
     import Text from './Fields/Text.vue'
@@ -44,6 +63,7 @@
     const currentQ = ref(0)
     const errors = ref([])
     const validated = ref(false)
+    const display = ref('single')
     const quiz = ref([
         {
             input: ref(''),
@@ -169,6 +189,15 @@
         return quiz.value[currentQ.value]
     }) 
 
+    const displayTest = computed(() => {
+        let d = []
+        if (display.value === 'single') {
+            d.push(current.value)
+            return d
+        }
+        return quiz.value
+    })
+
     const required = computed(() => {
         return current.value.required
     })
@@ -225,6 +254,11 @@
 
         validated.value = errors.value.length ? false : true
         
+    }
+
+    function updateDisplay(type) {
+        console.log('type', type)
+        display.value = type
     }
 
 </script>

@@ -24,7 +24,6 @@ export function validation(type, input) {
 }
 
 export function debouncing(func, timeout = 1000) {
-    console.log('debouncing')
     let timer 
     return (...args) => {
         clearTimeout(timer)
