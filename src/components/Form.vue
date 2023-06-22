@@ -4,7 +4,7 @@
             <div v-for="(q, index) in quiz">
                 <div v-if="index === currentQ">
                     INPUT: {{ q.input }}
-                    <Select v-if="q.type === 'select'" :field="q" />
+                    <Select v-if="q.type === 'select'" v-model="q.input" :field="q" />
                     <Checkbox v-else-if="q.type === 'checkbox'" v-model="q.input" :field="q" />
                     <Radio v-else-if="q.type === 'radio'" v-model="q.input" :field="q" />
                     <DatePicker v-else-if="q.type === 'date'" v-model="q.input" :field="q" />
@@ -63,7 +63,24 @@
             label: 'Question Three',
             required: true,
             validate: true,
-            errorMessage: 'Please fill out the question.'
+            errorMessage: 'Please fill out the question.',
+            options: [
+                {   
+                    id: 'option_1',
+                    value: 'option_1',
+                    label: 'Option 1'
+                },
+                {   
+                    id: 'option_2',
+                    value: 'option_2',
+                    label: 'Option 2'
+                },
+                {
+                    id: 'option_3',
+                    value: 'option_3',
+                    label: 'Option 3'
+                }
+            ]
         },
         {
             input: ref([]),

@@ -3,7 +3,12 @@
         <h6> {{ field.label }} </h6>
 
         <div v-for="option in field.options">
-            <input :type="field.type" :id="option.id" :name="field.name" :value="option.value" @change="updateInput($event.target.value)" />
+            <input 
+                :type="field.type" 
+                :id="option.id" 
+                :name="field.name" 
+                :value="option.value" 
+                @change="updateInput($event.target.value)" />
             <label :for="option.id">
                 {{ option.label }}
             </label>
