@@ -3,10 +3,15 @@
         HERE IS MY FORM
         <div v-for="(q, index) in quiz">
             <div v-if="index === currentQ">
+                <Select v-if="q.type === 'select'" :field="q" />
+                <Checkbox v-else-if="q.type === 'checkbox'" :field="q" />
+                <Radio v-else-if="q.type === 'radio'" :field="q" />
+                <DatePicker v-else-if="q.type === 'date'" :field="q" />
+                <Text v-else :field="q" />
                 {{ q.label }}
             </div>
         </div>
-        {{ currentQ }} {{  quiz.length }}
+
         <div class="form__buttons">
             <button v-if="currentQ > 0" @click="prev">
                 Back
@@ -19,7 +24,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+    import Checkbox from './Fields/Checkbox.vue'
+    import DatePicker from './Fields/DatePicker.vue'
+    import Radio from './Fields/Radio.vue'
+    import { ref } from 'vue'
+    import Select from './Fields/Select.vue'
+    import Text from './Fields/Text.vue'
     
     // == Declaring Variables == //
     const currentQ = ref(0)
@@ -36,7 +46,7 @@ import { ref } from 'vue';
         },
         {
             input: ref(''),
-            type: 'input',
+            type: 'email',
             id: 'q2',
             name: 'q2',
             label: 'Question Two',
@@ -46,7 +56,7 @@ import { ref } from 'vue';
         },
         {
             input: ref(''),
-            type: 'input',
+            type: 'select',
             id: 'q3',
             name: 'q3',
             label: 'Question Three',
@@ -54,6 +64,37 @@ import { ref } from 'vue';
             validate: true,
             errorMessage: 'Please fill out the question.'
         },
+        {
+            input: ref(''),
+            type: 'checkbox',
+            id: 'q4',
+            name: 'q4',
+            label: 'Question Four',
+            required: true,
+            validate: true,
+            errorMessage: 'Please fill out the question.'
+        },
+        {
+            input: ref(''),
+            type: 'radio',
+            id: 'q5',
+            name: 'q5',
+            label: 'Question Five',
+            required: true,
+            validate: true,
+            errorMessage: 'Please fill out the question.'
+        },
+        {
+            input: ref(''),
+            type: 'date',
+            id: 'q6',
+            name: 'q6',
+            label: 'Question Six',
+            required: true,
+            validate: true,
+            errorMessage: 'Please fill out the question.'
+        },
+
     ])
 
     // == Functions == //
