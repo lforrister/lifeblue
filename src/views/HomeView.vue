@@ -4,6 +4,27 @@ import Form from '../components/Form.vue'
 
 <template>
   <main>
-    <Form />
+    <div class="homeView__wrapper">
+      <div class="homeView__form">
+          <Form />
+      </div>
+    </div>
   </main>
 </template>
+
+
+<style lang="scss">
+
+  .homeView__wrapper {
+    @include wrapper;
+    min-height: 100vh;
+  }
+
+  .homeView__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+</style>

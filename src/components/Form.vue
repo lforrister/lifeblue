@@ -208,6 +208,7 @@
 <style lang="scss">
     .form__container {
         border: 1px solid black;
+        padding: $spacing-40;
     }
 
 </style>

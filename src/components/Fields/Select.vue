@@ -1,5 +1,5 @@
 <template>
-    <fieldset>
+    <div>
         <label :for="field.id">
             {{ field.label }}
         </label>
@@ -12,7 +12,7 @@
                 {{ option.label }}
             </option>
         </select>
-    </fieldset>
+    </div>
 </template>
 
 <script setup>

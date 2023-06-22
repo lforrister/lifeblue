@@ -1,6 +1,6 @@
 <template>
-    <fieldset v-if="field">
-        <label :for="field.id">
+    <div v-if="field">
+        <label :for="field.id" class="forms__input-label">
             {{ field.label }}
         </label>
         <input
@@ -8,8 +8,9 @@
             :id="field.id"
             :name="field.name"
             @input="updateInput($event.target.value)"
+            class="forms__input"
         >
-    </fieldset>
+    </div>
 </template>
 
 <script setup>

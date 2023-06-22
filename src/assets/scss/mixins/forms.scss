@@ -1,0 +1,20 @@
+@import '../variables/grid.scss';
+
+// ==== INPUT ==== //
+
+@mixin input {
+    width: 100%;
+    margin-top: $spacing-8;
+}
+
+@mixin input-label {
+    width: 100%;
+}
+
+.forms__input {
+    @include input;
+}
+
+.forms__input-label {
+    @include input-label;
+}

@@ -1,6 +1,6 @@
 <template>
     <fieldset>
-        <h6> {{ field.label }} </h6>
+        <legend> {{ field.label }} </legend>
 
         <div v-for="option in field.options">
             <input 
