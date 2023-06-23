@@ -1,5 +1,5 @@
 <template>
-    <div class="form__container">
+    <div class="form__container" id="info-form">
         <ProgressTracker :percent="progress"/>
  
         <form class="form__form">

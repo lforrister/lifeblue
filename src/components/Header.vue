@@ -7,6 +7,10 @@
                     Fill out our questionnaire below, and we'll work with you to plan the honeymoon of your dreams.
                     After all, trips like these only happen once in a blue moon.
                 </h2>
+
+                <div class="header__cta">
+                    <PulseButton />
+                </div>
             </div>
             <div class="header__image">
                 <figure class="header__figure image__figure">
@@ -17,9 +21,13 @@
     </div>
 </template>
 
+<script setup>
+    import PulseButton from './PulseButton.vue';
+</script>
+
 <style lang="scss">
     .header__container {
-        // background-image: linear-gradient(to left, $ocean , $dark-ocean);
+        background-image: linear-gradient(to left, $ocean , $dark-ocean);
     }
 
     .header__content {
@@ -31,16 +39,30 @@
     .header__copy {
         padding: $spacing-64 0;
         width: 50%;
-        background-image: linear-gradient(to left, $ocean , $dark-ocean);
     }
     
     .header__image {
         width: 50%;
+        margin-left: -5%;
     }
 
     .header__figure {
         position: relative;
-        // @include image-wrapper(50%, 50%);
+       clip-path: polygon(27% 0%, 100% 0%, 100% 100%, 100% 100%, 0% 100%);
+
+       &:after {
+            position: absolute;
+            content: '';
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            background: rgba(30, 60, 114, 0.25);
+       }
+    }
+
+    .header__cta {
+        margin-top: $spacing-40;
     }
 
 </style>
