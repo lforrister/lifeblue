@@ -1,7 +1,7 @@
 <template>
     <div class="form__container">
         <ProgressTracker :percent="progress"/>
-
+ 
         <form class="form__form">
             <div v-for="field in displayForm">
                 <div v-if="display === 'single' || editable.includes(field.id)">
@@ -67,7 +67,7 @@
 
     
     // == Declaring Variables == //
-    const currentQ = ref(localStorage.getItem('index') ?? 0)
+    const currentQ = ref(Number(localStorage.getItem('index')) ?? 0)
     const errors = ref([])
     const validated = ref(false)
     const display = ref('single')
@@ -102,7 +102,7 @@
             errorMessage: 'Please enter a valid phone number.'
         },
         {
-            input: ref(''),
+            input: ref(localStorage.getItem('q3') ?? ''),
             type: 'select',
             id: 'q3',
             name: 'q3',
@@ -128,7 +128,7 @@
             ]
         },
         {
-            input: ref([]),
+            input: ref(localStorage.getItem('q4') ?? []),
             type: 'checkbox',
             id: 'q4',
             name: 'q4',
@@ -154,7 +154,7 @@
             ]
         },
         {
-            input: ref(''),
+            input: ref(localStorage.getItem('q5') ?? ''),
             type: 'radio',
             id: 'q5',
             name: 'q5',
@@ -180,7 +180,7 @@
             ]
         },
         {
-            input: ref(''),
+            input: ref(localStorage.getItem('q6') ?? ''),
             type: 'date',
             id: 'q6',
             name: 'q6',
@@ -246,27 +246,26 @@
     // == Functions == //
     function prev() {
         currentQ.value = currentQ.value - 1 
+        localStorage.setItem('index', currentQ.value)
     }
 
     function next() {
         if (!disabled.value) {
-            updateStorage()
             currentQ.value = currentQ.value + 1
+            updateStorage()
         }
-
+        
         validated.value = false
     }
 
     function updateStorage() {
         quiz.value.forEach((q) => {
-            console.log("q", q)
-            if (q.input) {
+            if (q.input.length) {
                 localStorage.setItem(q.id, q.input)
             } else {
                 localStorage.removeItem(q.id)
             }
         })
-
         localStorage.setItem('index', currentQ.value)
     }
 
