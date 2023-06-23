@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-    import ArrowDown from './icons/ArrowDown.vue';
+    import ArrowDown from '../icons/ArrowDown.vue';
 
 </script>
 

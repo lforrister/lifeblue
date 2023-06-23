@@ -1,10 +1,9 @@
 <template>
     <div class="form__container" id="info-form">
-
         <ProgressTracker :percent="progress"/>
  
         <form class="form__form">
-            <div v-for="field in displayForm">
+            <div v-for="field in displayForm" class="form__section">
                 <div v-if="display === 'single' || editable.includes(field.id)">
                     <Select v-if="field.type === 'select'" v-model="field.input" :field="field" />
                     <Checkbox v-else-if="field.type === 'checkbox'" v-model="field.input" :field="field" />
@@ -15,8 +14,6 @@
                     <p v-if="errors.find((err) => err.id === field.id)" class="forms__error">
                         {{ field.errorMessage }}
                     </p>
-
-                    <button v-if="editable.includes(field.id)" @click.prevent="save(field)">Save</button>
                 </div>
 
                 <div v-else-if="display === 'full'">
@@ -25,14 +22,15 @@
                             <h3>
                             {{ field.label }}
                             </h3>
-                            <button @click.prevent="edit(field)" class="form__edit">EDIT</button>
                         </div>
                         <p class="form__answer">
                             {{ field.input }}
                         </p>
-                    </div>
-                
+                    </div>      
                 </div>
+
+                <SaveButton v-if="editable.includes(field.id)" @click.prevent="save(field)" class="form__review-btn"/>
+                <EditButton v-else-if="display === 'full'" @click.prevent="edit(field)" class="form__review-btn"/>
                 
             </div>
 
@@ -46,6 +44,7 @@
                 <button v-if="currentQ === (quiz.length - 1)" @click.prevent="updateDisplay('full')" class="buttons__primary">
                     Review
                 </button>
+
             </div>
 
             <div v-else-if="display === 'full'" class="form__buttons">
@@ -55,6 +54,8 @@
             <div v-else>
                 <h3>Thank you for your submission!</h3>
             </div>
+
+
             
         </form>
     </div>
@@ -63,9 +64,11 @@
 <script setup>
     import Checkbox from './Fields/Checkbox.vue'
     import DatePicker from './Fields/DatePicker.vue'
+    import EditButton from './Buttons/EditButton.vue'
     import { computed, onMounted, ref } from 'vue'
     import ProgressTracker from './ProgressTracker.vue'
     import Radio from './Fields/Radio.vue'
+    import SaveButton from './Buttons/SaveButton.vue'
     import Select from './Fields/Select.vue'
     import Text from './Fields/Text.vue'
     import { debouncing, validation } from '../plugins/utils'
@@ -115,12 +118,12 @@
         }
 
         if (display.value === 'full') {
-            let req = displayForm.value.filter((field) => field.required)
-            let inputs = req.filter((f) => f.input.length)
+            // let req = displayForm.value.filter((field) => field.required)
+            // let inputs = req.filter((f) => f.input.length)
 
-            if (req.length != inputs.length || errors.value.length) {
-                return true
-            }
+            // if (req.length != inputs.length || errors.value.length) {
+            //     return true
+            // }
 
             return false
         }
@@ -269,5 +272,15 @@
         font-size: 12px;
         padding: $spacing-4 $spacing-8;
     }
+
+    .form__section {
+        position: relative;
+    }
+
+    .form__review-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }   
 
 </style>

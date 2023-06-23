@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-    import PulseButton from './PulseButton.vue';
+    import PulseButton from './Buttons/PulseButton.vue'
 
     // == Functions == //
     function scrollToForm() {
