@@ -18,7 +18,7 @@
                     <button v-if="editable.includes(field.id)" @click.prevent="save(field)">Save</button>
                 </div>
 
-                <div v-else>
+                <div v-else-if="display === 'full'">
                     <div v-if="!editable.includes(field.id)" class="form__full">
                         <div class="form__row">
                             <h3>
@@ -47,8 +47,12 @@
                 </button>
             </div>
 
-            <div v-else class="form__buttons">
-                <button :class="disabled ? 'is-disabled' : ''">Submit</button>
+            <div v-else-if="display === 'full'" class="form__buttons">
+                <button :class="disabled ? 'is-disabled' : ''" @click.prevent="submit">Submit</button>
+            </div>
+
+            <div v-else>
+                <h3>Thank you for your submission!</h3>
             </div>
             
         </form>
@@ -304,6 +308,22 @@
         if (index > -1) {
             editable.value.splice(index, 1)
         }
+
+        updateStorage()
+    }
+
+    function submit() {
+        console.log('submitting!')
+        display.value = 'finished'
+        clearStorage()
+    }
+
+    function clearStorage() {
+        quiz.value.forEach((q) => {
+            localStorage.removeItem(q.id)
+        })
+
+        localStorage.removeItem('index')
     }
 
 </script>
