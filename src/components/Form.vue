@@ -1,5 +1,6 @@
 <template>
     <div class="form__container" id="info-form">
+
         <ProgressTracker :percent="progress"/>
  
         <form class="form__form">
@@ -68,6 +69,7 @@
     import Select from './Fields/Select.vue'
     import Text from './Fields/Text.vue'
     import { debouncing, validation } from '../plugins/utils'
+    import questions from '../questions.json'
 
     
     // == Declaring Variables == //
@@ -76,124 +78,7 @@
     const validated = ref(false)
     const display = ref('single')
     const editable = ref([])
-    const quiz = ref([
-        {
-            input: ref(localStorage.getItem('first_name') ?? ''),
-            type: 'input',
-            id: 'first_name',
-            name: 'First Name',
-            label: 'What is your first name?',
-            required: true,
-        },
-        {
-            input: ref(localStorage.getItem('email') ?? ''),
-            type: 'email',
-            id: 'email',
-            name: 'Email',
-            label: 'What is your email address?',
-            required: true,
-            validate: true,
-            errorMessage: 'Please enter a valid email address.'
-        },
-        {
-            input: ref(localStorage.getItem('phone') ?? ''),
-            type: 'phone',
-            id: 'phone',
-            name: 'Phone Number',
-            label: 'What is your phone number?',
-            required: true,
-            validate: true,
-            errorMessage: 'Please enter a valid phone number.'
-        },
-        {
-            input: ref(localStorage.getItem('q3') ?? ''),
-            type: 'select',
-            id: 'q3',
-            name: 'q3',
-            label: 'Question Three',
-            required: true,
-            errorMessage: 'Please fill out the question.',
-            options: [
-                {   
-                    id: 'option_1',
-                    value: 'option_1',
-                    label: 'Option 1'
-                },
-                {   
-                    id: 'option_2',
-                    value: 'option_2',
-                    label: 'Option 2'
-                },
-                {
-                    id: 'option_3',
-                    value: 'option_3',
-                    label: 'Option 3'
-                }
-            ]
-        },
-        {
-            input: ref(localStorage.getItem('q4') ?? []),
-            type: 'checkbox',
-            id: 'q4',
-            name: 'q4',
-            label: 'Question Four',
-            required: true,
-            errorMessage: 'Please fill out the question.',
-            options: [
-                {   
-                    id: 'option_1',
-                    value: 'option_1',
-                    label: 'Option 1'
-                },
-                {   
-                    id: 'option_2',
-                    value: 'option_2',
-                    label: 'Option 2'
-                },
-                {
-                    id: 'option_3',
-                    value: 'option_3',
-                    label: 'Option 3'
-                }
-            ]
-        },
-        {
-            input: ref(localStorage.getItem('q5') ?? ''),
-            type: 'radio',
-            id: 'q5',
-            name: 'q5',
-            label: 'Question Five',
-            required: true,
-            errorMessage: 'Please fill out the question.',
-            options: [
-                {   
-                    id: 'option_1',
-                    value: 'option_1',
-                    label: 'Option 1'
-                },
-                {   
-                    id: 'option_2',
-                    value: 'option_2',
-                    label: 'Option 2'
-                },
-                {
-                    id: 'option_3',
-                    value: 'option_3',
-                    label: 'Option 3'
-                }
-            ]
-        },
-        {
-            input: ref(localStorage.getItem('q6') ?? ''),
-            type: 'date',
-            id: 'q6',
-            name: 'q6',
-            label: 'Question Six',
-            required: true,
-            errorMessage: 'Please fill out the question.'
-        },
-
-    ])
+    const quiz = ref(questions)
 
     // == Computed Properties == //
     const current = computed(() => {
@@ -221,9 +106,9 @@
         //@todo - in theory we can use the 'full' for both, but have to figure out the debonce
         if (display.value === 'single') {
             if (required.value && needsValidation.value) {
-                return !current.value.input.length || !validated.value
+                return !current.value.input || !validated.value
             } else if (required.value) {
-                return !current.value.input.length
+                return !current.value.input
             } 
 
             return false
@@ -248,6 +133,18 @@
 
 
     // == Functions == //
+    function fill() {
+        quiz.value.forEach((q) => {
+            switch(q.type) {
+                case 'checkbox':
+                    q.input = ref(localStorage.getItem(q.id) ?? '[]')
+                    break
+                default:
+                    q.input = ref(localStorage.getItem(q.id) ?? '')
+            }
+        })
+    }
+
     function prev() {
         currentQ.value = currentQ.value - 1 
         localStorage.setItem('index', currentQ.value)
@@ -325,6 +222,10 @@
 
         localStorage.removeItem('index')
     }
+
+    onMounted(() => {
+        fill()
+    })
 
 </script>
 
