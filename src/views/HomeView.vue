@@ -23,13 +23,14 @@ import Nav from '../components/Nav.vue'
     @include wrapper;
     min-height: 100vh;
     background: $grey-light;
+    background-image: linear-gradient(to bottom right, $grey-light , $metallic);
   }
 
   .homeView__form {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    padding: $spacing-88 0;
   }
 
 </style>

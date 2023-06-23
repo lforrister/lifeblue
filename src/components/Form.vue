@@ -36,13 +36,13 @@
             </div>
 
             <div v-if="display === 'single'" class="form__buttons">
-                <button v-if="currentQ > 0" @click.prevent="prev" class="forms__back-btn">
+                <button v-if="currentQ > 0" @click.prevent="prev" class="buttons__secondary">
                     Back
                 </button>
-                <button v-if="currentQ < (quiz.length - 1)" @click.prevent="next" :class="disabled ? 'is-disabled' : ''">
+                <button v-if="currentQ < (quiz.length - 1)" @click.prevent="next" class="buttons__primary" :class="disabled ? 'is-disabled' : ''">
                     Next
                 </button>
-                <button v-if="currentQ === (quiz.length - 1)"  @click.prevent="updateDisplay('full')">
+                <button v-if="currentQ === (quiz.length - 1)" @click.prevent="updateDisplay('full')" class="buttons__primary">
                     Review
                 </button>
             </div>
@@ -332,22 +332,15 @@
     .form__container {
         position: relative;
         padding: $spacing-40;
+        padding-top: $spacing-24;
         width: 500px;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
         border-radius: 12px;
         background: white;
     }
 
-    .form__form {
-        margin-top: $spacing-8;
-    }
-
     .form__buttons {
         margin-top: $spacing-16;
-
-        button {
-            @include button-primary;
-        }
     }
 
     .forms__back-btn {

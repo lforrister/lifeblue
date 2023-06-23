@@ -3,12 +3,17 @@
 
 @mixin button-primary {
     padding: $spacing-8 $spacing-24;
-    background: $blue-deep;
+    background: $dark-ocean;
     color: white;
     font-family: $raleway;
-    font-weight: 600;
+    font-weight: 700;
     border: none;
     text-transform: uppercase;
+    border-radius: 3px;
+
+    &:hover {
+        cursor: pointer;
+    }
 
     &.is-disabled {
         background: $grey-light;
@@ -20,23 +25,15 @@
     }
 }
 
-@mixin button-display {
-    color: white;
-    border-radius: 25px;
-    border: 3px solid white;
-    font-family: $raleway;
-    text-decoration: none;
-    padding: $spacing-8 $spacing-40;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-top: 16px;
-    background: linear-gradient(to right, $light-ocean, $ocean)
+@mixin button-secondary {
+    @include button-primary;
+    background: $sky-blue;
 }
 
 .buttons__primary {
     @include button-primary;
 }
 
-.buttons__display {
-    @include button-display;
+.buttons__secondary {
+    @include button-secondary;
 }

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="field">
+    <div v-if="field" class="text__container">
         <label :for="field.id" class="forms__input-label">
             {{ field.label }}
         </label>
@@ -31,3 +31,10 @@
     }
 
 </script>
+
+<style lang="scss">
+    .text__container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+</style>

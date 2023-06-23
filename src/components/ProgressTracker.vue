@@ -23,22 +23,16 @@
 
 <style lang="scss">
     .progressTracker__container {
-        width: 100%;
-        height: 25px;
-        border: 1px solid $grey-light;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
+        position: relative;
+        height: 10px;
+        margin-bottom: $spacing-24;
+        background: $grey-light;
     }
 
     .progressTracker__bar {
-        height: 25px;
-        background-image: linear-gradient(to right, $blue , $sky-blue);
+        background-image: linear-gradient(to right, $dark-ocean , $light-ocean);
         position: absolute;
-        border-top-left-radius: 15px;
+        height: 10px;
     }
 
 </style>
