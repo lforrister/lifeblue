@@ -1,14 +1,44 @@
 @import '../variables/fonts.scss';
+@import '../variables/type.scss';
+
+@mixin h1 {
+    font-family: $playfair;
+    font-size: $type-48;
+    font-weight: 600;
+    margin: 0;
+    font-style: italic;
+    line-height: $type-54;
+}
+
+@mixin h2 {
+    font-family: $raleway;
+    font-size: $type-18;
+    line-height: $type-28;
+    font-weight: 200;
+}
 
 @mixin h3 {
     font-family: $raleway;
     margin: 0;
 }
 
+@mixin p {
+    font-family: $nanum;
+    margin: 0;
+}
+
+h1, .type__h1 {
+    @include h1;
+}
+
+h2, .type__h2 {
+    @include h2;
+}
+
 h3, .type__h3 {
     @include h3;
 }
 
-p {
-    margin: 0;
+p, .type__p {
+    @include p;
 }

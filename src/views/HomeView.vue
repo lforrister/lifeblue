@@ -1,10 +1,13 @@
 <script setup>
 import Form from '../components/Form.vue'
-import LocalTest from '../components/LocalTest.vue'
+import Header from '../components/Header.vue'
+import Nav from '../components/Nav.vue'
 </script>
 
 <template>
   <main>
+    <Nav></Nav>
+    <Header />
     <div class="homeView__wrapper">
       <div class="homeView__form">
           <Form />
