@@ -9,7 +9,7 @@
                 </h2>
 
                 <div class="header__cta">
-                    <PulseButton />
+                    <PulseButton @click="scrollToForm"/>
                 </div>
             </div>
             <div class="header__image">
@@ -23,6 +23,13 @@
 
 <script setup>
     import PulseButton from './PulseButton.vue';
+
+    // == Functions == //
+    function scrollToForm() {
+        let form = document.getElementById('info-form')
+        form.scrollIntoView({behavior: 'smooth'})
+    }
+
 </script>
 
 <style lang="scss">
