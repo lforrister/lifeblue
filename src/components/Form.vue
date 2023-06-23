@@ -5,11 +5,8 @@
         <form class="form__form">
             <div v-for="field in displayForm" class="form__section">
                 <div v-if="display === 'single' || editable.includes(field.id)">
-                    <Select v-if="field.type === 'select'" v-model="field.input" :field="field" />
-                    <Checkbox v-else-if="field.type === 'checkbox'" v-model="field.input" :field="field" />
-                    <Radio v-else-if="field.type === 'radio'" v-model="field.input" :field="field" />
-                    <DatePicker v-else-if="field.type === 'date'" v-model="field.input" :field="field" />
-                    <Text v-else v-model="field.input" :field="field" @validate-input="triggerValidate"/>
+
+                    <Edit :field="field" @trigger-validate="triggerValidate"/>
 
                     <p v-if="errors.find((err) => err.id === field.id)" class="forms__error">
                         {{ field.errorMessage }}
@@ -17,10 +14,8 @@
                 </div>
 
                 <Review v-else-if="display === 'full'" :field="field" :editable="editable"/>
-
                 <SaveButton v-if="editable.includes(field.id)" @click.prevent="save(field)" class="form__review-btn"/>
                 <EditButton v-else-if="display === 'full'" @click.prevent="edit(field)" class="form__review-btn"/>
-                
             </div>
 
 
@@ -49,18 +44,14 @@
 </template>
 
 <script setup>
-    import Checkbox from './Fields/Checkbox.vue'
-    import DatePicker from './Fields/DatePicker.vue'
     import EditButton from './Buttons/EditButton.vue'
     import { computed, onMounted, ref } from 'vue'
     import ProgressTracker from './ProgressTracker.vue'
-    import Radio from './Fields/Radio.vue'
     import SaveButton from './Buttons/SaveButton.vue'
-    import Select from './Fields/Select.vue'
-    import Text from './Fields/Text.vue'
     import { debouncing, validation } from '../plugins/utils'
     import questions from '../questions.json'
     import Review from './Review.vue'
+    import Edit from './Edit.vue'
 
     
     // == Declaring Variables == //
