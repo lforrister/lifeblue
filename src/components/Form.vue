@@ -16,23 +16,13 @@
                     </p>
                 </div>
 
-                <div v-else-if="display === 'full'">
-                    <div v-if="!editable.includes(field.id)" class="form__full">
-                        <div class="form__row">
-                            <h3>
-                            {{ field.label }}
-                            </h3>
-                        </div>
-                        <p class="form__answer">
-                            {{ field.input }}
-                        </p>
-                    </div>      
-                </div>
+                <Review v-else-if="display === 'full'" :field="field" :editable="editable"/>
 
                 <SaveButton v-if="editable.includes(field.id)" @click.prevent="save(field)" class="form__review-btn"/>
                 <EditButton v-else-if="display === 'full'" @click.prevent="edit(field)" class="form__review-btn"/>
                 
             </div>
+
 
             <div v-if="display === 'single'" class="form__buttons">
                 <button v-if="currentQ > 0" @click.prevent="prev" class="buttons__secondary">
@@ -48,15 +38,12 @@
             </div>
 
             <div v-else-if="display === 'full'" class="form__buttons">
-                <button :class="disabled ? 'is-disabled' : ''" @click.prevent="submit">Submit</button>
+                <button class="buttons__primary" :class="disabled ? 'is-disabled' : ''" @click.prevent="submit">Submit</button>
             </div>
 
             <div v-else>
                 <h3>Thank you for your submission!</h3>
             </div>
-
-
-            
         </form>
     </div>
 </template>
@@ -73,6 +60,7 @@
     import Text from './Fields/Text.vue'
     import { debouncing, validation } from '../plugins/utils'
     import questions from '../questions.json'
+    import Review from './Review.vue'
 
     
     // == Declaring Variables == //
@@ -118,12 +106,12 @@
         }
 
         if (display.value === 'full') {
-            // let req = displayForm.value.filter((field) => field.required)
-            // let inputs = req.filter((f) => f.input.length)
+            let req = displayForm.value.filter((field) => field.required)
+            let inputs = req.filter((f) => f.input.length)
 
-            // if (req.length != inputs.length || errors.value.length) {
-            //     return true
-            // }
+            if (req.length != inputs.length || errors.value.length) {
+                return true
+            }
 
             return false
         }
@@ -213,9 +201,10 @@
     }
 
     function submit() {
-        console.log('submitting!')
-        display.value = 'finished'
-        clearStorage()
+        if (!disabled.value) {
+            display.value = 'finished'
+            clearStorage()
+        }
     }
 
     function clearStorage() {
@@ -257,16 +246,6 @@
         padding-bottom: $spacing-8;
     }
 
-    .form__full {
-        margin-bottom: $spacing-16;
-    }
-
-    .form__row {
-        display: flex;
-        justify-content: space-between;
-        margin: $spacing-24 0;
-    }
-
     .form__edit {
         font-family: $raleway;
         font-size: 12px;
@@ -275,6 +254,7 @@
 
     .form__section {
         position: relative;
+        margin-bottom: $spacing-24;
     }
 
     .form__review-btn {
