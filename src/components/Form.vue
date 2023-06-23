@@ -67,14 +67,14 @@
 
     
     // == Declaring Variables == //
-    const currentQ = ref(0)
+    const currentQ = ref(localStorage.getItem('index') ?? 0)
     const errors = ref([])
     const validated = ref(false)
     const display = ref('single')
     const editable = ref([])
     const quiz = ref([
         {
-            input: ref(''),
+            input: ref(localStorage.getItem('first_name') ?? ''),
             type: 'input',
             id: 'first_name',
             name: 'First Name',
@@ -82,7 +82,7 @@
             required: true,
         },
         {
-            input: ref(''),
+            input: ref(localStorage.getItem('email') ?? ''),
             type: 'email',
             id: 'email',
             name: 'Email',
@@ -92,7 +92,7 @@
             errorMessage: 'Please enter a valid email address.'
         },
         {
-            input: ref(''),
+            input: ref(localStorage.getItem('phone') ?? ''),
             type: 'phone',
             id: 'phone',
             name: 'Phone Number',
@@ -250,10 +250,24 @@
 
     function next() {
         if (!disabled.value) {
+            updateStorage()
             currentQ.value = currentQ.value + 1
         }
 
         validated.value = false
+    }
+
+    function updateStorage() {
+        quiz.value.forEach((q) => {
+            console.log("q", q)
+            if (q.input) {
+                localStorage.setItem(q.id, q.input)
+            } else {
+                localStorage.removeItem(q.id)
+            }
+        })
+
+        localStorage.setItem('index', currentQ.value)
     }
 
     const triggerValidate = debouncing((field) => validateInput(field))

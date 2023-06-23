@@ -8,7 +8,7 @@ import LocalTest from '../components/LocalTest.vue'
     <div class="homeView__wrapper">
       <div class="homeView__form">
         <LocalTest />
-          <!-- <Form /> -->
+          <Form />
       </div>
     </div>
   </main>
