@@ -3,7 +3,7 @@
         <FormHeader v-if="display !== 'finished'" :index="currentQ" :display="display"/>
         <ProgressTracker v-if="display !== 'finished'" :percent="progress" :display="display"/>
  
-        <form class="form__form">
+        <form class="form__form"> DISABLED? {{ disabled }}
             <div v-for="field in displayForm" class="form__section">
                 <Edit v-if="display === 'single' || editable.includes(field.id)" :field="field" @update-validation="updateValidation"/>
                 <Review v-else-if="display === 'full'" :field="field" :editable="editable"/>
@@ -78,6 +78,11 @@
         let inputsVal = needsVal.filter((field) => field.input).map(f => f.id)
         let valCount = validated.value.filter((valField) => inputsVal.includes(valField))
         let passValidation = inputsVal.length === valCount.length
+
+        console.log('pass required? ', passRequired)
+        console.log('pass validation? ', passValidation)
+        console.log('inputs', inputsVal.length, 'val', valCount.length)
+        console.log('validated', validated.value)
 
         return !passValidation || !passRequired
     })
