@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div> {{ field.type }}
         <div v-if="!editable.includes(field.id)" class="review__container">
             <div class="review__row">
                 <h4>
@@ -7,7 +7,7 @@
                 </h4>
             </div>
             <p class="review__response">
-                {{ field.input }}
+                {{ response(field) }}
             </p>
         </div>   
     </div>
@@ -26,6 +26,17 @@
             default: []
         }
     })
+
+    // == Functions == //
+    function response(field) {
+        if (field.type === 'checkbox') {
+            return field.input.join(', ')
+        }
+
+        return field.input
+    }
+
+
 </script>
 
 <style lang="scss">
