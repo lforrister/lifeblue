@@ -84,6 +84,34 @@
     }
 }
 
+@mixin radio-input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+@mixin radio {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background-color: $dark-ocean;
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: white;
+    }
+}
+
 .forms__fieldset {
     @include fieldset;
 }
@@ -98,6 +126,14 @@
 
 .forms__checkbox {
     @include checkbox;
+}
+
+.forms__radio-input {
+    @include radio-input;
+}
+
+.forms__radio {
+    @include radio;
 }
 
 // ==== ERRORS ==== //
