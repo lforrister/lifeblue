@@ -6,11 +6,7 @@
             <div v-for="field in displayForm" class="form__section">
                 <div v-if="display === 'single' || editable.includes(field.id)">
 
-                    <Edit :field="field" @trigger-validate="triggerValidate"/>
-
-                    <p v-if="errors.find((err) => err.id === field.id)" class="forms__error">
-                        {{ field.errorMessage }}
-                    </p>
+                    <Edit :field="field" @update-validation="updateValidation"/>
                 </div>
 
                 <Review v-else-if="display === 'full'" :field="field" :editable="editable"/>
@@ -48,7 +44,6 @@
     import { computed, onMounted, ref } from 'vue'
     import ProgressTracker from './ProgressTracker.vue'
     import SaveButton from './Buttons/SaveButton.vue'
-    import { debouncing, validation } from '../plugins/utils'
     import questions from '../questions.json'
     import Review from './Review.vue'
     import Edit from './Edit.vue'
@@ -57,7 +52,7 @@
     // == Declaring Variables == //
     const currentQ = ref(Number(localStorage.getItem('index')) ?? 0)
     const errors = ref([])
-    const validated = ref(false)
+    const validated = ref([])
     const display = ref('single')
     const editable = ref([])
     const quiz = ref(questions)
@@ -85,27 +80,18 @@
     })
 
     const disabled = computed(() => {
-        //@todo - in theory we can use the 'full' for both, but have to figure out the debonce
-        if (display.value === 'single') {
-            if (required.value && needsValidation.value) {
-                return !current.value.input || !validated.value
-            } else if (required.value) {
-                return !current.value.input
-            } 
+        //Step 1: Check for required
+        let req = displayForm.value.filter((field) => field.required)
+        let inputs = req.filter((field) => field.input)
+        let passRequired = req.length === inputs.length
 
-            return false
-        }
+        // Step 2: Check for validation
+        let needsVal = displayForm.value.filter((field) => field.validate)
+        let inputsVal = needsVal.filter((field) => field.input).map(f => f.id)
+        let valCount = validated.value.filter((valField) => inputsVal.includes(valField))
+        let passValidation = inputsVal.length === valCount.length
 
-        if (display.value === 'full') {
-            let req = displayForm.value.filter((field) => field.required)
-            let inputs = req.filter((f) => f.input.length)
-
-            if (req.length != inputs.length || errors.value.length) {
-                return true
-            }
-
-            return false
-        }
+        return !passValidation || !passRequired
     })
 
     const progress = computed(() => {
@@ -115,6 +101,26 @@
 
 
     // == Functions == //
+    function updateValidation(field) {
+        validated.value = [...new Set(validated.value)]
+        //@todo - make util for removing item from array
+        let id = field[0]
+        let valid = field[1]
+        if (valid) {
+            //remove item   
+            validated.value.push(id)
+ 
+        } else {
+            let item = validated.value.find(i => i === id)
+            let index = validated.value.indexOf(item)
+
+            if (index > -1) {
+                validated.value.splice(index, 1)
+            }
+        }
+
+    }
+
     function fill() {
         quiz.value.forEach((q) => {
             switch(q.type) {
@@ -137,8 +143,6 @@
             currentQ.value = currentQ.value + 1
             updateStorage()
         }
-        
-        validated.value = false
     }
 
     function updateStorage() {
@@ -152,25 +156,6 @@
         localStorage.setItem('index', currentQ.value)
     }
 
-    const triggerValidate = debouncing((field) => validateInput(field))
-
-    function validateInput(field) {
-        if (field.validate) {
-            const valid = validation(field.type, field.input)
-
-            if(valid) {
-                errors.value = errors.value.filter((err) => err.id !== field.id)
-            } else {
-                errors.value.push({
-                    id: field.id,
-                    message: field.errorMessage ?? field.errorMessage
-                })
-            }
-        } 
-
-        validated.value = errors.value.length ? false : true
-        
-    }
 
     function updateDisplay(type) {
         display.value = type
