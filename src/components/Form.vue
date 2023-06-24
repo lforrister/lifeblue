@@ -4,16 +4,11 @@
  
         <form class="form__form">
             <div v-for="field in displayForm" class="form__section">
-                <div v-if="display === 'single' || editable.includes(field.id)">
-
-                    <Edit :field="field" @update-validation="updateValidation"/>
-                </div>
-
+                <Edit v-if="display === 'single' || editable.includes(field.id)" :field="field" @update-validation="updateValidation"/>
                 <Review v-else-if="display === 'full'" :field="field" :editable="editable"/>
                 <SaveButton v-if="editable.includes(field.id)" @click.prevent="save(field)" class="form__review-btn"/>
                 <EditButton v-else-if="display === 'full'" @click.prevent="edit(field)" class="form__review-btn"/>
             </div>
-
 
             <div v-if="display === 'single'" class="form__buttons">
                 <button v-if="currentQ > 0" @click.prevent="prev" class="buttons__secondary">
@@ -40,8 +35,8 @@
 </template>
 
 <script setup>
-    import EditButton from './Buttons/EditButton.vue'
     import { computed, onMounted, ref } from 'vue'
+    import EditButton from './Buttons/EditButton.vue'
     import ProgressTracker from './ProgressTracker.vue'
     import SaveButton from './Buttons/SaveButton.vue'
     import questions from '../questions.json'
@@ -51,11 +46,10 @@
     
     // == Declaring Variables == //
     const currentQ = ref(Number(localStorage.getItem('index')) ?? 0)
-    const errors = ref([])
-    const validated = ref([])
     const display = ref('single')
     const editable = ref([])
     const quiz = ref(questions)
+    const validated = ref([])
 
     // == Computed Properties == //
     const current = computed(() => {
@@ -69,14 +63,6 @@
             return d
         }
         return quiz.value
-    })
-
-    const required = computed(() => {
-        return current.value.required
-    })
-
-    const needsValidation = computed(() => {
-        return current.value.validate
     })
 
     const disabled = computed(() => {
@@ -101,6 +87,18 @@
 
 
     // == Functions == //
+    function fill() {
+        quiz.value.forEach((q) => {
+            switch(q.type) {
+                case 'checkbox':
+                    q.input = ref(localStorage.getItem(q.id) ?? '[]')
+                    break
+                default:
+                    q.input = ref(localStorage.getItem(q.id) ?? '')
+            }
+        })
+    }
+    
     function updateValidation(field) {
         validated.value = [...new Set(validated.value)]
         //@todo - make util for removing item from array
@@ -119,18 +117,6 @@
             }
         }
 
-    }
-
-    function fill() {
-        quiz.value.forEach((q) => {
-            switch(q.type) {
-                case 'checkbox':
-                    q.input = ref(localStorage.getItem(q.id) ?? '[]')
-                    break
-                default:
-                    q.input = ref(localStorage.getItem(q.id) ?? '')
-            }
-        })
     }
 
     function prev() {
