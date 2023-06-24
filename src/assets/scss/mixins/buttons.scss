@@ -10,9 +10,11 @@
     border: none;
     text-transform: uppercase;
     border-radius: 3px;
+    transition: all .2s ease-in;
 
     &:hover {
         cursor: pointer;
+        transform: scale(1.05);
     }
 
     &.is-disabled {
@@ -27,7 +29,9 @@
 
 @mixin button-secondary {
     @include button-primary;
-    background: $sky-blue;
+    background: rgba(97, 144, 232, 0.1);
+    color: $dark-ocean;
+    border: 2px solid $dark-ocean;
 }
 
 .buttons__primary {

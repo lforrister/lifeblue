@@ -44,6 +44,7 @@
         "name": "Budget",
         "label": "What is your estimated budget for your trip?",
         "required": true,
+        "placeholder": "Please select a range",
         "options": [
             {
                 "id": "budget_1",

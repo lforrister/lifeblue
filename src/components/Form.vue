@@ -12,7 +12,7 @@
             </div>
 
             <div v-if="display === 'single'" class="form__buttons">
-                <button v-if="currentQ > 0" @click.prevent="prev" class="buttons__secondary">
+                <button v-if="currentQ > 0" @click.prevent="prev" class="buttons__secondary forms__prev">
                     Back
                 </button>
                 <button v-if="currentQ < (quiz.length - 1)" @click.prevent="next" class="buttons__primary" :class="disabled ? 'is-disabled' : ''">
@@ -198,6 +198,10 @@
 
     .form__buttons {
         margin-top: $spacing-16;
+    }
+
+    .forms__prev {
+        margin-right: $spacing-8;
     }
 
     .forms__back-btn {
