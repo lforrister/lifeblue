@@ -1,5 +1,5 @@
 <template>
-    <div> {{ field.type }}
+    <div>
         <div v-if="!editable.includes(field.id)" class="review__container">
             <div class="review__row">
                 <h4>
@@ -31,6 +31,8 @@
     function response(field) {
         if (field.type === 'checkbox') {
             return field.input.join(', ')
+        } else if (field.type === 'date') {
+            return new Date(field.input).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric'})
         }
 
         return field.input
