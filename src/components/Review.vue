@@ -2,9 +2,9 @@
     <div>
         <div v-if="!editable.includes(field.id)" class="review__container">
             <div class="review__row">
-                <h3>
-                {{ field.label }}
-                </h3>
+                <h4>
+                    {{ field.label }}
+                </h4>
             </div>
             <p class="review__response">
                 {{ field.input }}
@@ -37,6 +37,10 @@
         display: flex;
         justify-content: space-between;
         margin: $spacing-24 0;
+
+        h4 {
+            margin-right: $spacing-40;
+        }
     }
 
     .review__response {

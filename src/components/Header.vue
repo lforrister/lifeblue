@@ -44,7 +44,7 @@
     }
 
     .header__copy {
-        padding: $spacing-64 0;
+        padding: $spacing-64 0 $spacing-48 0;
         width: 50%;
     }
     

@@ -12,12 +12,16 @@
         percent: {
             type: Number,
             default: 0
+        },
+        display: {
+            type: String,
+            default: ''
         }
     })
 
     // == Computed Properties == //
     const style = computed(() => {
-        return `width: ${props.percent}%`
+        return props.display === 'full' ? `width: 100%` : `width: ${props.percent}%`
     })
 </script>
 
@@ -25,7 +29,7 @@
     .progressTracker__container {
         position: relative;
         height: 10px;
-        margin-bottom: $spacing-24;
+        margin: $spacing-24 0;
         background: $grey-light;
     }
 

@@ -18,8 +18,15 @@
 }
 
 @mixin h3 {
-    font-family: $raleway;
+    font-family: $playfair;
+    font-weight: 400;
     margin: 0;
+    font-style: italic;
+}
+
+@mixin h4 {
+    @include h3;
+
 }
 
 @mixin p {
@@ -37,6 +44,10 @@ h2, .type__h2 {
 
 h3, .type__h3 {
     @include h3;
+}
+
+h4, .type__h4 {
+    @include h4;
 }
 
 p, .type__p {

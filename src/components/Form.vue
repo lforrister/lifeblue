@@ -1,6 +1,7 @@
 <template>
     <div class="form__container" id="info-form">
-        <ProgressTracker :percent="progress"/>
+        <FormHeader v-if="display !== 'finished'" :index="currentQ" :display="display"/>
+        <ProgressTracker v-if="display !== 'finished'" :percent="progress" :display="display"/>
  
         <form class="form__form">
             <div v-for="field in displayForm" class="form__section">
@@ -37,6 +38,7 @@
 <script setup>
     import { computed, onMounted, ref } from 'vue'
     import EditButton from './Buttons/EditButton.vue'
+    import FormHeader from './FormHeader.vue'
     import ProgressTracker from './ProgressTracker.vue'
     import SaveButton from './Buttons/SaveButton.vue'
     import questions from '../questions.json'
@@ -187,7 +189,7 @@
     .form__container {
         position: relative;
         padding: $spacing-40;
-        padding-top: $spacing-24;
+        padding-top: 0;
         width: 500px;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
         border-radius: 12px;
