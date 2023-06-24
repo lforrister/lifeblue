@@ -44,13 +44,20 @@
     }
 
     .header__copy {
-        padding: $spacing-64 0 $spacing-48 0;
-        width: 50%;
+        padding: $spacing-48 0 $spacing-24 0;
+
+        @media screen and (min-width: $breakpoint-md) {
+            width: 50%;
+            padding: $spacing-64 0 $spacing-48 0;
+        }
     }
     
     .header__image {
-        width: 50%;
-        margin-left: -5%;
+
+        @media screen and (min-width: $breakpoint-md) {
+            width: 50%;
+            margin-left: -5%;
+        }
     }
 
     .header__figure {
@@ -68,8 +75,12 @@
        }
     }
 
-    .header__cta {
-        margin-top: $spacing-40;
+    .header__cta {  
+        margin-top: $spacing-24;
+
+        @media screen and (min-width: $breakpoint-md) {
+            margin-top: $spacing-40;
+        }
     }
 
 </style>

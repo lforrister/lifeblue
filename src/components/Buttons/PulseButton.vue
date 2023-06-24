@@ -24,10 +24,15 @@
 	.pulseButton__bg,
 	.pulseButton__button {
 		position: absolute;
-		width: 60px;
-		height: 60px;
+		width: 50px;
+		height: 50px;
 		border-radius: 100%;
 		font-family: $raleway;
+
+		@media screen and (min-width: $breakpoint-md) {
+			width: 60px;
+			height: 60px;
+		}
 	}
 
 	.pulseButton__button {

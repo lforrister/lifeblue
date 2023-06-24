@@ -1,20 +1,31 @@
 @import '../variables/fonts.scss';
 @import '../variables/type.scss';
+@import '../variables/grid.scss';
 
 @mixin h1 {
     font-family: $playfair;
-    font-size: $type-48;
+    font-size: $type-32;
     font-weight: 600;
     margin: 0;
     font-style: italic;
-    line-height: $type-54;
+    line-height: $type-36;
+
+    @media screen and (min-width: $breakpoint-md) {
+        font-size: $type-48;
+        line-height: $type-54;
+    }
 }
 
 @mixin h2 {
     font-family: $raleway;
-    font-size: $type-18;
-    line-height: $type-28;
+    font-size: $type-16;
+    line-height: $type-24;
     font-weight: 200;
+
+    @media screen and (min-width: $breakpoint-md) {
+        font-size: $type-18;
+        line-height: $type-28;
+    }
 }
 
 @mixin h3 {

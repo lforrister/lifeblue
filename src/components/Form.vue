@@ -3,7 +3,7 @@
         <FormHeader v-if="display !== 'finished'" :index="currentQ" :display="display"/>
         <ProgressTracker v-if="display !== 'finished'" :percent="progress" :display="display"/>
  
-        <form class="form__form"> DISABLED? {{ disabled }}
+        <form class="form__form">
             <div v-for="field in displayForm" class="form__section">
                 <Edit v-if="display === 'single' || editable.includes(field.id)" :field="field" @update-validation="updateValidation"/>
                 <Review v-else-if="display === 'full'" :field="field" :editable="editable"/>
