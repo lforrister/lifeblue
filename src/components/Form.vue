@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-    import { computed, onMounted, ref } from 'vue'
+    import { computed, onBeforeMount, ref } from 'vue'
     import EditButton from './Buttons/EditButton.vue'
     import FormHeader from './FormHeader.vue'
     import ProgressTracker from './ProgressTracker.vue'
@@ -93,7 +93,8 @@
         quiz.value.forEach((q) => {
             switch(q.type) {
                 case 'checkbox':
-                    q.input = ref(localStorage.getItem(q.id) ?? '[]')
+                    let stored = localStorage.getItem(q.id)
+                    q.input = ref(stored ? stored.split(',') : [])
                     break
                 default:
                     q.input = ref(localStorage.getItem(q.id) ?? '')
@@ -179,7 +180,7 @@
         localStorage.removeItem('index')
     }
 
-    onMounted(() => {
+    onBeforeMount(() => {
         fill()
     })
 

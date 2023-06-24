@@ -11,7 +11,7 @@
                 v-model="checked"
                 @change="updateInput(checked)" 
                 class="forms__checkbox-input"/>
-            <span class="forms__checkbox" :class="checked.includes(option.value) ? 'is-checked' : ''"></span>
+            <span class="forms__checkbox" :class="check(option.value)"></span>
             <label :for="option.id" class="forms__options-label">
                 {{ option.label }}
             </label>
@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-    import { ref } from 'vue'
+    import { ref, onMounted, onUpdated } from 'vue'
 
     // == Define Props & Emits == //
     const emit = defineEmits(['update:modelValue'])
@@ -36,9 +36,23 @@
 
     // == Functions == //
     function updateInput(values) {
-        console.log('updating!', values)
         emit('update:modelValue', values)
     }
+
+    function check(option) {
+        if (checked.value.includes(option)) {
+            return 'is-checked'
+        } else {
+            return ''
+        }
+    }
+
+    onMounted(() => {
+        if (props.field.input && props.field.input.length) {
+            console.log("need to replace!")
+            checked.value = [...props.field.input]
+        } 
+    })
 
 </script>
 
