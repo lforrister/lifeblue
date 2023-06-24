@@ -51,7 +51,7 @@
     const display = ref('single')
     const editable = ref([])
     const quiz = ref(questions)
-    const validated = ref([])
+    const notValid = ref([])
 
     // == Computed Properties == //
     const current = computed(() => {
@@ -76,13 +76,8 @@
         // Step 2: Check for validation
         let needsVal = displayForm.value.filter((field) => field.validate)
         let inputsVal = needsVal.filter((field) => field.input).map(f => f.id)
-        let valCount = validated.value.filter((valField) => inputsVal.includes(valField))
-        let passValidation = inputsVal.length === valCount.length
-
-        console.log('pass required? ', passRequired)
-        console.log('pass validation? ', passValidation)
-        console.log('inputs', inputsVal.length, 'val', valCount.length)
-        console.log('validated', validated.value)
+        let valCount = notValid.value.filter((valField) => inputsVal.includes(valField))
+        let passValidation = !valCount.length
 
         return !passValidation || !passRequired
     })
@@ -108,21 +103,21 @@
     }
     
     function updateValidation(field) {
-        validated.value = [...new Set(validated.value)]
+        notValid.value = [...new Set(notValid.value)]
         //@todo - make util for removing item from array
         let id = field[0]
         let valid = field[1]
         if (valid) {
             //remove item   
-            validated.value.push(id)
- 
-        } else {
-            let item = validated.value.find(i => i === id)
-            let index = validated.value.indexOf(item)
+            let item = notValid.value.find(i => i === id)
+            let index = notValid.value.indexOf(item)
 
             if (index > -1) {
-                validated.value.splice(index, 1)
+                notValid.value.splice(index, 1)
             }
+ 
+        } else {
+            notValid.value.push(id)
         }
 
     }
