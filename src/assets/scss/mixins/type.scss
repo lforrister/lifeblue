@@ -37,6 +37,11 @@
 
 @mixin h4 {
     @include h3;
+    font-size: $type-14;
+
+    @media screen and (min-width: $breakpoint-md) {
+        font-size: $type-16;
+    }
 
 }
 

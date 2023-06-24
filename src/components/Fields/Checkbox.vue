@@ -1,6 +1,6 @@
 <template>
     <fieldset class="forms__fieldset">
-        <legend class="forms__input-label"> {{ field.label }} </legend>
+        <legend class="forms__input-label checkbox__legend"> {{ field.label }} </legend>
         
         <div v-for="option in field.options" class="checkbox__options">
             <input 
@@ -57,6 +57,10 @@
 </script>
 
 <style lang="scss">
+    .checkbox__legend {
+        margin-bottom: $spacing-8;
+    }
+    
     .checkbox__options {
         position: relative;
         margin-bottom: $spacing-8;

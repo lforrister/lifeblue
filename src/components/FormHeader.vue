@@ -38,10 +38,15 @@
     .formHeader__container {
         background-image: linear-gradient(to right, $ocean , $dark-ocean);
         color: white;
-        margin-left: calc($spacing-40 * -1);
-        margin-right: calc($spacing-40 * -1);
+        margin-left: calc($spacing-24 * -1);
+        margin-right: calc($spacing-24 * -1);
         padding: $spacing-8 $spacing-40;
         border-top-right-radius: 12px;
         border-top-left-radius: 12px;
+
+        @media screen and (min-width: $breakpoint-md) {
+            margin-left: calc($spacing-40 * -1);
+            margin-right: calc($spacing-40 * -1);
+        }
     }
 </style>

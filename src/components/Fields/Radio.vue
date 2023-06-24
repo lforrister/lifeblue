@@ -1,6 +1,6 @@
 <template>
     <fieldset class="forms__fieldset">
-        <legend class="forms__input-label"> {{ field.label }} </legend>
+        <legend class="forms__input-label radio__legend"> {{ field.label }} </legend>
 
         <div v-for="option in field.options" class="radio__options">
             <input 
@@ -45,6 +45,10 @@
         .forms__options-label {
             margin-left: $spacing-26;
         }
+    }
+
+    .radio__legend {
+        margin-bottom: $spacing-8;
     }
 
 </style>

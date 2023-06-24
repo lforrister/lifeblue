@@ -33,7 +33,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: $spacing-88 0;
+    padding: $spacing-32 0;
+
+    @media screen and (min-width: $breakpoint-md) {
+      padding: $spacing-88 0;
+    }
   }
 
 </style>

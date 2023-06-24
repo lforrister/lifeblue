@@ -4,12 +4,12 @@
     max-width: 1920px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 32px;
-    padding-right: 32px;
+    padding-left: $spacing-24;
+    padding-right: $spacing-24;
 
     @media screen and (min-width: $breakpoint-md) {
-        padding-right: 64px;
-        padding-left: 64px;
+        padding-right: $spacing-64;;
+        padding-left: $spacing-64;;
     }
 }
 

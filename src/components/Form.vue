@@ -194,12 +194,17 @@
 <style lang="scss">
     .form__container {
         position: relative;
-        padding: $spacing-40;
+        padding: $spacing-24;
         padding-top: 0;
         width: 500px;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
         border-radius: 12px;
         background: white;
+
+        @media screen and (min-width: $breakpoint-md) {
+            padding: $spacing-40;
+            padding-top: 0;
+        }
     }
 
     .form__buttons {
