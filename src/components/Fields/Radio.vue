@@ -10,7 +10,7 @@
                 :value="option.value" 
                 @change="updateInput($event.target.value)"
                 class="forms__radio-input" />
-            <span class="forms__radio"></span>
+            <span class="forms__radio" :class="option.value === field.input ? 'is-selected' : ''"></span>
             <label :for="option.id" class="forms__options-label">
                 {{ option.label }}
             </label>

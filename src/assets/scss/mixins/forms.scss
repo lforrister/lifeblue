@@ -88,6 +88,9 @@
     position: absolute;
     opacity: 0;
     cursor: pointer;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
 }
 
 @mixin radio {
@@ -97,7 +100,7 @@
     height: 18px;
     width: 18px;
     border-radius: 50%;
-    background-color: $dark-ocean;
+    background-color: $grey;
 
     &:after {
         content: '';
@@ -105,10 +108,20 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 8px;
-        height: 8px;
+        width: 12px;
+        height: 12px;
         border-radius: 50%;
         background: white;
+        display: none;
+    }
+
+    &.is-selected {
+        background-color: $dark-ocean;
+
+        &:after {
+            display: block;
+        }
+
     }
 }
 
