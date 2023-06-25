@@ -68,16 +68,14 @@
     const disabled = computed(() => {
         //Step 1: Check for required
         let req = displayForm.value.filter((field) => field.required)
-        let inputs = req.filter((field) => field.input)
+        let inputs = req.filter((field) => field.input.length)
         let passRequired = req.length === inputs.length
 
-        // Step 2: Check for validation
+        //Step 2: Check for validation
         let needsVal = displayForm.value.filter((field) => field.validate)
         let inputsVal = needsVal.filter((field) => field.input).map(f => f.id)
         let valCount = notValid.value.filter((valField) => inputsVal.includes(valField))
         let passValidation = !valCount.length
-
-        console.log('pass val?', passValidation)
 
         return !passValidation || !passRequired
     })

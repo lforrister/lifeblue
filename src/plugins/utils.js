@@ -23,7 +23,7 @@ export function validation(type, input) {
     return
 }
 
-export function debouncing(func, timeout = 200) {
+export function debouncing(func, timeout = 300) {
     let timer 
     return (...args) => {
         clearTimeout(timer)
