@@ -9,59 +9,56 @@
             <p class="review__response">
                 {{ response(field) }}
             </p>
-        </div>   
+        </div>
     </div>
 </template>
 
 <script setup>
-    import { formatDateString } from '../utilities/utils'
-    
-    // == Define Props & Emits == //
-    const emit = defineEmits(['update:modelValue', 'validateInput'])
-    const props = defineProps({
-        field: {
-            type: Object,
-            default: null
-        },
-        editable: {
-            type: String,
-            default:''
-        }
-    })
+import { formatDateString } from '../utilities/utils'
 
-    // == Functions == //
-    function response(field) {
-        if (field.type === 'checkbox') {
-            return field.input.join(', ')
-        } else if (field.type === 'date') {
-            return formatDateString(field.input, { month: 'long', day: 'numeric', year: 'numeric'})
-        }
+// == Define Props & Emits == //
+const emit = defineEmits(['update:modelValue', 'validateInput'])
+const props = defineProps({
+    field: {
+        type: Object,
+        default: null
+    },
+    editable: {
+        type: String,
+        default: ''
+    }
+})
 
-        return field.input
+// == Functions == //
+function response(field) {
+    if (field.type === 'checkbox') {
+        return field.input.join(', ')
+    } else if (field.type === 'date') {
+        return formatDateString(field.input, { month: 'long', day: 'numeric', year: 'numeric' })
     }
 
-
+    return field.input
+}
 </script>
 
 <style lang="scss">
-    .review__container {
-        margin-bottom: $spacing-16;
+.review__container {
+    margin-bottom: $spacing-16;
+}
+
+.review__row {
+    display: flex;
+    justify-content: space-between;
+    margin: $spacing-24 0;
+
+    h4 {
+        margin-right: $spacing-40;
     }
+}
 
-    .review__row {
-        display: flex;
-        justify-content: space-between;
-        margin: $spacing-24 0;
-
-        h4 {
-            margin-right: $spacing-40;
-        }
-    }
-
-    .review__response {
-        font-family: $raleway;
-        border-bottom: 1px solid $stars;
-        padding-bottom: $spacing-8;
-    }
-
+.review__response {
+    font-family: $raleway;
+    border-bottom: 1px solid $stars;
+    padding-bottom: $spacing-8;
+}
 </style>

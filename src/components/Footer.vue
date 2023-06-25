@@ -9,26 +9,26 @@
 </template>
 
 <style lang="scss">
-    .footer__container {
-        background: $dark-ocean;
-        position: relative;
+.footer__container {
+    background: $dark-ocean;
+    position: relative;
 
-        &:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.15);
-        }
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.15);
     }
+}
 
-    .footer__content {
-        color: white;
-        padding: $spacing-16 0;
-        text-align: center;
-        position: relative;
-        z-index: 100;
-    }
+.footer__content {
+    color: white;
+    padding: $spacing-16 0;
+    text-align: center;
+    position: relative;
+    z-index: 100;
+}
 </style>

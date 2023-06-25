@@ -5,52 +5,49 @@
 </template>
 
 <script setup>
-    import EditIcon from '../icons/EditIcon.vue'
+import EditIcon from '../icons/EditIcon.vue'
 
-    // == Define Props & Emits == //
-    const props = defineProps({
-        direction: {
-            type: String,
-            default: ''
-        }
-    })
-
+// == Define Props & Emits == //
+const props = defineProps({
+    direction: {
+        type: String,
+        default: ''
+    }
+})
 </script>
 
 <style lang="scss">
+.editButton__button {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    font-family: $raleway;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid $dark-ocean;
+    background: $cloud;
+    cursor: pointer;
+    outline: none;
 
-	.editButton__button {
-		width: 30px;
-		height: 30px;
-		border-radius: 100%;
-		font-family: $raleway;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border: 2px solid $dark-ocean;
-		background: $cloud;
-		cursor: pointer;
-		outline: none;
+    svg {
+        stroke: $dark-ocean;
+    }
 
-		svg {
-            stroke: $dark-ocean;
+    &.is-disabled {
+        border: 2px solid $stars;
+
+        svg {
+            stroke: $stars;
         }
 
-        &.is-disabled {
-            border: 2px solid $stars;
-
-            svg {
-                stroke: $stars;
-            }
-
-            &:hover {
-                cursor: not-allowed;
-            }
+        &:hover {
+            cursor: not-allowed;
         }
+    }
 
-        &:focus {
-            box-shadow:rgba(30, 60, 114, 0.5) 0px 4px 12px;
-        }
-	}
-
+    &:focus {
+        box-shadow: rgba(30, 60, 114, 0.5) 0px 4px 12px;
+    }
+}
 </style>

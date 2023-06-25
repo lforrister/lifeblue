@@ -1,5 +1,5 @@
 export function debouncing(func, timeout = 300) {
-    let timer 
+    let timer
     return (...args) => {
         clearTimeout(timer)
         timer = setTimeout(() => {
@@ -34,7 +34,7 @@ export function formatDateHyphen(date) {
 export function validation(type, input) {
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
-    let regex 
+    let regex
 
     switch (type) {
         case 'email':
@@ -56,4 +56,4 @@ export function validation(type, input) {
     return
 }
 
-export default {debouncing, formatDateHyphen, formatDateString, validation}
+export default { debouncing, formatDateHyphen, formatDateString, validation }

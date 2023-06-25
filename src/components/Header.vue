@@ -4,12 +4,12 @@
             <div class="header__copy wrapper">
                 <h1>Your Guide to Epic Honeymoon Destinations</h1>
                 <h2>
-                    Fill out our questionnaire below, and we'll work with you to plan the honeymoon of your dreams.
-                    After all, trips like these only happen once in a blue moon.
+                    Fill out our questionnaire below, and we'll work with you to plan the honeymoon
+                    of your dreams. After all, trips like these only happen once in a blue moon.
                 </h2>
 
                 <div class="header__cta">
-                    <PulseButton @click="scrollToForm"/>
+                    <PulseButton @click="scrollToForm" />
                 </div>
             </div>
             <div class="header__image">
@@ -22,65 +22,61 @@
 </template>
 
 <script setup>
-    import PulseButton from './Buttons/PulseButton.vue'
+import PulseButton from './Buttons/PulseButton.vue'
 
-    // == Functions == //
-    function scrollToForm() {
-        let form = document.getElementById('info-form')
-        form.scrollIntoView({behavior: 'smooth'})
-    }
-
+// == Functions == //
+function scrollToForm() {
+    let form = document.getElementById('info-form')
+    form.scrollIntoView({ behavior: 'smooth' })
+}
 </script>
 
 <style lang="scss">
-    .header__container {
-        background-image: $ocean-gradient;
+.header__container {
+    background-image: $ocean-gradient;
+}
+
+.header__content {
+    color: white;
+    display: flex;
+}
+
+.header__copy {
+    padding: $spacing-48 0 $spacing-24 0;
+
+    @media screen and (min-width: $breakpoint-sm) {
+        width: 50%;
+        padding: $spacing-64 0 $spacing-48 0;
     }
+}
 
-    .header__content {
-        color: white;
-        display: flex;
-        
+.header__image {
+    @media screen and (min-width: $breakpoint-sm) {
+        width: 50%;
+        margin-left: -5%;
     }
+}
 
-    .header__copy {
-        padding: $spacing-48 0 $spacing-24 0;
+.header__figure {
+    position: relative;
+    clip-path: polygon(27% 0%, 100% 0%, 100% 100%, 100% 100%, 0% 100%);
 
-        @media screen and (min-width: $breakpoint-sm) {
-            width: 50%;
-            padding: $spacing-64 0 $spacing-48 0;
-        }
+    &:after {
+        position: absolute;
+        content: '';
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background: rgba(30, 60, 114, 0.25);
     }
-    
-    .header__image {
+}
 
-        @media screen and (min-width: $breakpoint-sm) {
-            width: 50%;
-            margin-left: -5%;
-        }
+.header__cta {
+    margin-top: $spacing-24;
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin-top: $spacing-40;
     }
-
-    .header__figure {
-        position: relative;
-       clip-path: polygon(27% 0%, 100% 0%, 100% 100%, 100% 100%, 0% 100%);
-
-       &:after {
-            position: absolute;
-            content: '';
-            left: 0;
-            right: 0;
-            bottom: 0;
-            top: 0;
-            background: rgba(30, 60, 114, 0.25);
-       }
-    }
-
-    .header__cta {  
-        margin-top: $spacing-24;
-
-        @media screen and (min-width: $breakpoint-md) {
-            margin-top: $spacing-40;
-        }
-    }
-
+}
 </style>

@@ -53,7 +53,7 @@
     &:focus + .forms__checkbox {
         border: 2px solid $stars;
         width: 16px;
-        height:  16px;
+        height: 16px;
 
         &.is-checked {
             width: 18px;
@@ -137,7 +137,6 @@
         &:after {
             display: block;
         }
-
     }
 }
 

@@ -1,4 +1,3 @@
-
 @import '../variables/grid.scss';
 
 @mixin button-primary {
@@ -10,7 +9,7 @@
     border: none;
     text-transform: uppercase;
     border-radius: 3px;
-    transition: all .2s ease-in;
+    transition: all 0.2s ease-in;
     position: relative;
 
     &:focus {

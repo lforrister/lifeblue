@@ -10,30 +10,30 @@
             :value="field.input"
             @input="updateInput($event.target.value)"
             class="forms__input"
-        >
+        />
     </div>
 </template>
 
 <script setup>
-    // == Define Props & Emits == //
-    const emit = defineEmits(['update:modelValue', 'validateInput'])
-    const props = defineProps({
-        field: {
-            type: Object,
-            default: null
-        }
-    })
-
-    // == Functions == //
-    function updateInput(target) {
-        emit('update:modelValue', target)
-        emit('validateInput', props.field)
+// == Define Props & Emits == //
+const emit = defineEmits(['update:modelValue', 'validateInput'])
+const props = defineProps({
+    field: {
+        type: Object,
+        default: null
     }
+})
+
+// == Functions == //
+function updateInput(target) {
+    emit('update:modelValue', target)
+    emit('validateInput', props.field)
+}
 </script>
 
 <style lang="scss">
-    .text__container {
-        display: flex;
-        flex-wrap: wrap;
-    }
+.text__container {
+    display: flex;
+    flex-wrap: wrap;
+}
 </style>

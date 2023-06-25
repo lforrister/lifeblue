@@ -1,5 +1,16 @@
 <template>
-    <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 12C20 7.11149 16.0007 3.13144 11 3C16.6829 8.75775 10.952 18.6176 3 17C4.65938 19.4319 7.77111 21 11 21C13.8836 21 16.3745 19.7215 18 17.7163"  stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <svg
+        width="800px"
+        height="800px"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path
+            d="M20 12C20 7.11149 16.0007 3.13144 11 3C16.6829 8.75775 10.952 18.6176 3 17C4.65938 19.4319 7.77111 21 11 21C13.8836 21 16.3745 19.7215 18 17.7163"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        />
     </svg>
 </template>
