@@ -48,6 +48,10 @@
     height: 100%;
     width: 100%;
     z-index: 100;
+
+    &:focus + .forms__checkbox {
+        border: 2px solid $ocean;
+    }
 }
 
 @mixin checkbox {
@@ -91,6 +95,10 @@
     height: 100%;
     width: 100%;
     z-index: 100;
+
+    &:focus + .forms__radio {
+        border: 2px solid $ocean;
+    }
 }
 
 @mixin radio {

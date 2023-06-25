@@ -198,7 +198,7 @@
         @media screen and (min-width: $breakpoint-md) {
             padding: $spacing-40;
             padding-top: 0;
-            min-width: 500px;
+            width: 500px;
         }
     }
 
