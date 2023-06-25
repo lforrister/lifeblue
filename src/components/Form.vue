@@ -44,6 +44,9 @@
     import Edit from './Edit.vue'
     import Submitted from './Submitted.vue'
 
+    // === Define Props & Emits == //
+    const emit = defineEmits(['pageChange'])
+
     
     // == Declaring Variables == //
     const currentQ = ref(Number(localStorage.getItem('index')) ?? 0)
@@ -128,13 +131,16 @@
     function next() {
         if (!disabled.value) {
             currentQ.value = currentQ.value + 1
-            updateStorage()   
+            updateStorage()  
+            console.log('about to change')
+            emit('pageChange') 
         }
     }
 
     function review() {
         updateDisplay('full')
         updateStorage()
+        emit('pageChange') 
     }
 
     function updateStorage() {

@@ -4,7 +4,7 @@
 		<Header id="header" />
 		<div class="homeView__wrapper" :style="style">
 			<div class="homeView__form">
-				<Form />
+				<Form @page-change="pageChange"/>
 			</div>
 		</div>
 		<Footer id="footer" />
@@ -21,6 +21,7 @@
   const style = ref('')
 
   function setHeight() {
+    console.log('setting height')
     let header = document.getElementById('header')
     let headerHeight = header.offsetHeight
     let navHeight = 40
@@ -28,6 +29,11 @@
     let spacer = 75
     let height = headerHeight + navHeight + footerHeight - spacer
     style.value = `min-height: calc(100vh - ${height}px);`
+  }
+
+  function pageChange() {
+    console.log('changing!')
+    setHeight()
   }
 
   onMounted(() => {
@@ -53,6 +59,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
   }
 
   .homeView__form {
