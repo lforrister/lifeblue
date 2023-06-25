@@ -3,7 +3,7 @@
 
 @mixin button-primary {
     padding: $spacing-8 $spacing-24;
-    background: $dark-ocean;
+    background-color: $dark-ocean;
     color: white;
     font-family: $raleway;
     font-weight: 700;
@@ -24,7 +24,7 @@
     }
 
     &.is-disabled {
-        background: $grey-light;
+        background-color: $grey-light;
         color: $charcoal;
 
         &:hover {
