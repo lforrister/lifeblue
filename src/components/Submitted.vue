@@ -1,7 +1,7 @@
 <template>
     <div class="submitted__container">
         <figure class="submitted__figure">
-            <img src="../assets/images/couple.jpg" />
+            <img src="../assets/images/couple.jpg" alt="A couple on a dock watching the sunset over a lake."/>
         </figure>
         <h3>Your adventure awaits!</h3>
         <p>

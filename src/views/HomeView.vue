@@ -12,23 +12,10 @@
 </template>
 
 <script setup>
-  import { onMounted } from 'vue';
-import Footer from '../components/Footer.vue';
+  import Footer from '../components/Footer.vue';
   import Form from '../components/Form.vue'
   import Header from '../components/Header.vue'
   import Nav from '../components/Nav.vue'
-
-  function formHeight() {
-    nextTick(() => {
-      const nav = this.$refs.nav
-      console.log('nav', nav)
-    })
-  }
-
-  onMounted(() => {
-    formHeight()
-  })
-
 </script>
 
 

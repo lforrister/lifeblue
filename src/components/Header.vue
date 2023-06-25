@@ -14,7 +14,7 @@
             </div>
             <div class="header__image">
                 <figure class="header__figure image__figure">
-                    <img src="../assets/images/canyon.jpg" />
+                    <img src="../assets/images/canyon.jpg" alt="Water gushing into a canyon." />
                 </figure>
             </div>
         </div>
