@@ -128,7 +128,7 @@
     function next() {
         if (!disabled.value) {
             currentQ.value = currentQ.value + 1
-            updateStorage()
+            updateStorage()   
         }
     }
 

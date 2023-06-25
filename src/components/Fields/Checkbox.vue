@@ -47,7 +47,13 @@
         }
     }
 
+    function setFocus() {
+        let el = document.getElementById(props.field.options[0].id)
+        el.focus()
+    }
+
     onMounted(() => {
+        setFocus()
         if (props.field.input && props.field.input.length) {
             checked.value = [...props.field.input]
         } 

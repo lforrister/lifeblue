@@ -50,7 +50,14 @@
     z-index: 100;
 
     &:focus + .forms__checkbox {
-        border: 2px solid $ocean;
+        border: 2px solid $silver;
+        width: 16px;
+        height:  16px;
+
+        &.is-checked {
+            width: 18px;
+            height: 18px;
+        }
     }
 }
 
@@ -97,7 +104,7 @@
     z-index: 100;
 
     &:focus + .forms__radio {
-        border: 2px solid $ocean;
+        border: 2px solid $silver;
     }
 }
 

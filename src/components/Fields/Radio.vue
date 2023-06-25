@@ -19,6 +19,8 @@
 </template>
 
 <script setup>
+    import { onMounted, onUpdated } from 'vue'
+
     // == Define Props & Emits == //
     const emit = defineEmits(['update:modelValue'])
     const props = defineProps({
@@ -32,6 +34,17 @@
     function updateInput(target) {
         emit('update:modelValue', target)
     }
+
+    function setFocus() {
+        console.log('field', props.field.options[0].id)
+        let el = document.getElementById(props.field.options[0].id)
+        console.log('el', el)
+        el.focus()
+    }
+
+    onMounted(() => {
+        setFocus()
+    })
 
 </script>
 
