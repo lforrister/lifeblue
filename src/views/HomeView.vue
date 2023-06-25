@@ -1,21 +1,34 @@
 <template>
 	<main>
-		<Nav></Nav>
-		<Header />
+		<Nav ref="nav" />
+		<Header ref="header" />
 		<div class="homeView__wrapper">
 			<div class="homeView__form">
 				<Form />
 			</div>
 		</div>
-		<Footer />
+		<Footer ref="footer" />
 	</main>
 </template>
 
 <script setup>
-  import Footer from '../components/Footer.vue';
+  import { onMounted } from 'vue';
+import Footer from '../components/Footer.vue';
   import Form from '../components/Form.vue'
   import Header from '../components/Header.vue'
   import Nav from '../components/Nav.vue'
+
+  function formHeight() {
+    nextTick(() => {
+      const nav = this.$refs.nav
+      console.log('nav', nav)
+    })
+  }
+
+  onMounted(() => {
+    formHeight()
+  })
+
 </script>
 
 
@@ -24,9 +37,12 @@
 
   .homeView__wrapper {
     @include wrapper;
-    min-height: 100vh;
+    @include min-height;
     background: $grey-light;
     background-image: linear-gradient(to bottom right, $grey-light , $metallic);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .homeView__form {

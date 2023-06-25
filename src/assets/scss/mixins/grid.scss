@@ -1,5 +1,9 @@
 @import '../variables/grid.scss';
 
+$nav-height: 40px;
+$footer-height: 46px;
+$header-height-min: 250px;
+
 @mixin wrapper {
     max-width: 1920px;
     margin-left: auto;
@@ -11,6 +15,10 @@
         padding-right: $spacing-64;;
         padding-left: $spacing-64;;
     }
+}
+
+@mixin min-height {
+    min-height: calc(100vh - $nav-height - $footer-height - $header-height-min);
 }
 
 .wrapper {
