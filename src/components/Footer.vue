@@ -2,7 +2,7 @@
     <div class="footer__container">
         <div class="wrapper">
             <div class="footer__content">
-                <p>Copyright © 2023 BlueMoon Inc</p>
+                <p>Copyright © 2023 BlueMoon Events Inc</p>
             </div>
         </div>
     </div>
