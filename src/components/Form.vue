@@ -1,5 +1,5 @@
 <template>
-    <div class="form__container" id="info-form">
+    <div class="form__container">
         <FormHeader v-if="display !== 'finished'" :index="currentQ" :display="display"/>
         <ProgressTracker v-if="display !== 'finished'" :percent="progress" :display="display"/>
  
@@ -44,10 +44,6 @@
     import Edit from './Edit.vue'
     import Submitted from './Submitted.vue'
 
-    // === Define Props & Emits == //
-    const emit = defineEmits(['pageChange'])
-
-    
     // == Declaring Variables == //
     const currentQ = ref(Number(localStorage.getItem('index')) ?? 0)
     const display = ref('single')
@@ -132,15 +128,12 @@
         if (!disabled.value) {
             currentQ.value = currentQ.value + 1
             updateStorage()  
-            console.log('about to change')
-            emit('pageChange') 
         }
     }
 
     function review() {
         updateDisplay('full')
         updateStorage()
-        emit('pageChange') 
     }
 
     function updateStorage() {
