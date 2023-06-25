@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-    import { ref, onMounted, onUpdated } from 'vue'
+    import { ref, onMounted } from 'vue'
 
     // == Define Props & Emits == //
     const emit = defineEmits(['update:modelValue'])
@@ -47,13 +47,7 @@
         }
     }
 
-    function setFocus() {
-        let el = document.getElementById(props.field.options[0].id)
-        el.focus()
-    }
-
     onMounted(() => {
-        setFocus()
         if (props.field.input && props.field.input.length) {
             checked.value = [...props.field.input]
         } 
