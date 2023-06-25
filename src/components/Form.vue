@@ -1,5 +1,5 @@
 <template>
-    <div class="form__container" id="info-form"> {{ editEnd }}
+    <div class="form__container" id="info-form">
         <FormHeader v-if="display !== 'finished'" :index="currentQ" :display="display"/>
         <ProgressTracker v-if="display !== 'finished'" :percent="progress" :display="display"/>
  
@@ -28,9 +28,7 @@
                 <button class="buttons__primary" :class="disabled ? 'is-disabled' : ''" @click.prevent="submit">Submit</button>
             </div>
 
-            <div v-else>
-                <h3>Thank you for your submission!</h3>
-            </div>
+            <Submitted v-else />
         </form>
     </div>
 </template>
@@ -44,6 +42,7 @@
     import questions from '../questions.json'
     import Review from './Review.vue'
     import Edit from './Edit.vue'
+    import Submitted from './Submitted.vue'
 
     
     // == Declaring Variables == //
@@ -86,11 +85,6 @@
         let p = currentQ.value / quiz.value.length
         return Math.round(p * 100)
     })
-
-    const editEnd = computed(() => {
-        return 'Hello'
-    })
-
 
     // == Functions == //
     function fill() {
@@ -166,7 +160,7 @@
         
     }
 
-    function save(field) {
+    function save() {
         editable.value = ''
         updateStorage()
     }
