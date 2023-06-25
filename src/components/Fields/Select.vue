@@ -28,7 +28,6 @@
 
     // == Functions == //
     function updateInput(target) {
-        console.log('updating!', target)
         emit('update:modelValue', target)
     }
 

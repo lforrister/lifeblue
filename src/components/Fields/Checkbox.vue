@@ -49,7 +49,6 @@
 
     onMounted(() => {
         if (props.field.input && props.field.input.length) {
-            console.log("need to replace!")
             checked.value = [...props.field.input]
         } 
     })
