@@ -101,11 +101,10 @@
     
     function updateValidation(field) {
         notValid.value = [...new Set(notValid.value)]
-        //@todo - make util for removing item from array
         let id = field[0]
         let valid = field[1]
-        if (valid) {
-            //remove item   
+
+        if (valid) { 
             let item = notValid.value.find(i => i === id)
             let index = notValid.value.indexOf(item)
 
@@ -156,7 +155,6 @@
         if (editable.value === '' || editable.value === field.id) {
             editable.value = field.id
         }
-        
     }
 
     function save() {

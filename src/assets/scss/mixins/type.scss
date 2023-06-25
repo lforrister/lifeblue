@@ -49,6 +49,10 @@
     font-family: $raleway;
     font-size: $type-12;
     margin: 0;
+
+    @media screen and (min-width: $breakpoint-md) {
+        font-size: $type-14;
+    }
 }
 
 h1, .type__h1 {

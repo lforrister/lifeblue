@@ -1,5 +1,5 @@
 <template>
-    <button class="editButton__button" :class="direction"> 
+    <button class="editButton__button">
         <EditIcon />
     </button>
 </template>
