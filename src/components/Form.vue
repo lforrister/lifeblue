@@ -5,10 +5,10 @@
  
         <form class="form__form">
             <div v-for="field in displayForm" class="form__section">
-                <Edit v-if="display === 'single' || editable.includes(field.id)" :field="field" @update-validation="updateValidation"/>
+                <Edit v-if="display === 'single' || editable === field.id" :field="field" @update-validation="updateValidation"/>
                 <Review v-else-if="display === 'full'" :field="field" :editable="editable"/>
-                <SaveButton v-if="editable.includes(field.id)" @click.prevent="save(field)" class="form__review-btn"/>
-                <EditButton v-else-if="display === 'full'" @click.prevent="edit(field)" class="form__review-btn"/>
+                <SaveButton v-if="editable === field.id" @click.prevent="save(field)" class="form__review-btn"/>
+                <EditButton v-else-if="display === 'full'" @click.prevent="edit(field)" class="form__review-btn" :class="editable !== '' && editable !== field.id ? 'is-disabled' : ''"/>
             </div>
 
             <div v-if="display === 'single'" class="form__buttons">
@@ -49,7 +49,7 @@
     // == Declaring Variables == //
     const currentQ = ref(Number(localStorage.getItem('index')) ?? 0)
     const display = ref('single')
-    const editable = ref([])
+    const editable = ref('')
     const quiz = ref(questions)
     const notValid = ref([])
 
@@ -151,17 +151,14 @@
     }
 
     function edit(field) {
-        editable.value.push(field.id)
+        if (editable.value === '' || editable.value === field.id) {
+            editable.value = field.id
+        }
+        
     }
 
     function save(field) {
-        let item = editable.value.find(i => i === field.id)
-        let index = editable.value.indexOf(item)
-
-        if (index > -1) {
-            editable.value.splice(index, 1)
-        }
-
+        editable.value = ''
         updateStorage()
     }
 
@@ -235,6 +232,7 @@
         position: absolute;
         top: 0;
         right: 0;
+
     }   
 
 </style>

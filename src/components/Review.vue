@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="!editable.includes(field.id)" class="review__container">
+        <div v-if="editable != field.id" class="review__container">
             <div class="review__row">
                 <h4>
                     {{ field.label }}
@@ -22,8 +22,8 @@
             default: {}
         },
         editable: {
-            type: Array,
-            default: []
+            type: String,
+            default:''
         }
     })
 

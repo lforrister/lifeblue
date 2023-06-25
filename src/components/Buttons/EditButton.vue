@@ -36,6 +36,18 @@
             height: 18px;
             stroke: $dark-ocean;
         }
+
+        &.is-disabled {
+            border: 2px solid $silver;
+
+            svg {
+                stroke: $silver;
+            }
+
+            &:hover {
+                cursor: not-allowed;
+            }
+        }
 	}
 
 </style>
