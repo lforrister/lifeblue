@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-    import { computed, onMounted, ref } from 'vue'
+    import { computed} from 'vue'
     
     // == Define Props & Emits == //
     const props = defineProps({

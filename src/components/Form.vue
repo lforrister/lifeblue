@@ -4,8 +4,8 @@
         <ProgressTracker v-if="display !== 'finished'" :percent="progress" :display="display"/>
  
         <form class="form__form">
-            <div v-for="field in displayForm" class="form__section">
-                <Edit v-if="display === 'single' || editable === field.id" :field="field" @update-validation="updateValidation"/>
+            <div v-for="field in displayForm" :key="field.id" class="form__section">
+                <EditField v-if="display === 'single' || editable === field.id" :field="field" @update-validation="updateValidation"/>
                 <Review v-else-if="display === 'full'" :field="field" :editable="editable"/>
                 <SaveButton v-if="editable === field.id" @click.prevent="save(field)" class="form__review-btn"/>
                 <EditButton v-else-if="display === 'full'" @click.prevent="edit(field)" class="form__review-btn" :class="editable !== '' && editable !== field.id ? 'is-disabled' : ''"/>
@@ -41,7 +41,7 @@
     import SaveButton from './Buttons/SaveButton.vue'
     import questions from '../questions.json'
     import Review from './Review.vue'
-    import Edit from './Edit.vue'
+    import EditField from './EditField.vue'
     import Submitted from './Submitted.vue'
 
     // == Declaring Variables == //

@@ -2,7 +2,7 @@
     <fieldset class="forms__fieldset">
         <legend class="forms__input-label checkbox__legend"> {{ field.label }} </legend>
         
-        <div v-for="option in field.options" class="checkbox__options">
+        <div v-for="option in field.options" :key="field.id" class="checkbox__options">
             <input 
                 :type="field.type" 
                 :id="option.id" 

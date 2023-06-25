@@ -2,7 +2,7 @@
     <fieldset class="forms__fieldset">
         <legend class="forms__input-label radio__legend"> {{ field.label }} </legend>
 
-        <div v-for="option in field.options" class="radio__options">
+        <div v-for="option in field.options" :key="field.id" class="radio__options">
             <input 
                 :type="field.type" 
                 :id="option.id" 

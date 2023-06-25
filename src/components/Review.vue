@@ -21,7 +21,7 @@
     const props = defineProps({
         field: {
             type: Object,
-            default: {}
+            default: null
         },
         editable: {
             type: String,

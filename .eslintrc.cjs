@@ -10,5 +10,9 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 'latest'
+  },
+  rules: {
+    "vue/no-mutating-props": "off",
+    "vue/mulit-word-component-name": "off"
   }
 }

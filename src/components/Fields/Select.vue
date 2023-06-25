@@ -9,6 +9,7 @@
                 v-for="option in field.options"
                 :value="option.value"
                 :selected="option.value === field.input"
+                :key="option.id"
             >
                 {{ option.label }}
             </option>
