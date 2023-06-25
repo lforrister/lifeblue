@@ -15,6 +15,7 @@
                     v-if="editable === field.id"
                     @click.prevent="save(field)"
                     class="form__review-btn"
+                    :class="disabled ? 'is-disabled' : ''"
                 />
                 <EditButton
                     v-else-if="display === 'full'"
@@ -186,8 +187,10 @@ function edit(field) {
 }
 
 function save() {
-    editable.value = ''
-    updateStorage()
+    if (!disabled.value) {
+        editable.value = ''
+        updateStorage()
+    }
 }
 
 function submit() {
@@ -259,5 +262,17 @@ onBeforeMount(() => {
     position: absolute;
     top: 0;
     right: 0;
+
+    &.is-disabled {
+        border: 2px solid $stars;
+
+        svg {
+            stroke: $stars;
+        }
+
+        &:hover {
+            cursor: not-allowed;
+        }
+    }
 }
 </style>

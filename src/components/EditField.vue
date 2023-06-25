@@ -9,7 +9,7 @@
             v-model="field.input"
             :field="field"
             @validate-input="
-                updateDisabled(field)
+                updateDisabled(field),
                 setErrors(field)
             "
         />

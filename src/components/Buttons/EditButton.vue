@@ -34,18 +34,6 @@ const props = defineProps({
         stroke: $dark-ocean;
     }
 
-    &.is-disabled {
-        border: 2px solid $stars;
-
-        svg {
-            stroke: $stars;
-        }
-
-        &:hover {
-            cursor: not-allowed;
-        }
-    }
-
     &:focus {
         box-shadow: rgba(30, 60, 114, 0.5) 0px 4px 12px;
     }
