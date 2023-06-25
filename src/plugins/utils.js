@@ -33,4 +33,27 @@ export function debouncing(func, timeout = 400) {
     }
 }
 
+export function formatDateString(date, options) {
+    let formatted = date.replace(/-/g, '/')
+    let newDate = new Date(formatted).toLocaleString('en-US', options)
+    return newDate
+}
+
+export function formatDateHyphen(date) {
+    let month = date.getMonth() + 1
+    let day = date.getDate()
+    let year = date.getFullYear()
+
+    if (month < 10) {
+        month = '0' + month.toString()
+    }
+
+    if (day < 10) {
+        day = 0 + day.toString()
+    }
+
+    let formatted = `${year}-${month}-${day}`
+    return formatted
+}
+
 export default validation

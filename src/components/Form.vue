@@ -1,5 +1,5 @@
 <template>
-    <div class="form__container" id="info-form">
+    <div class="form__container" id="info-form"> {{ editEnd }}
         <FormHeader v-if="display !== 'finished'" :index="currentQ" :display="display"/>
         <ProgressTracker v-if="display !== 'finished'" :percent="progress" :display="display"/>
  
@@ -18,7 +18,7 @@
                 <button v-if="currentQ < (quiz.length - 1)" @click.prevent="next" class="buttons__primary" :class="disabled ? 'is-disabled' : ''">
                     Next
                 </button>
-                <button v-if="currentQ === (quiz.length - 1)" @click.prevent="updateDisplay('full')" class="buttons__primary">
+                <button v-if="currentQ === (quiz.length - 1)" @click.prevent="review" class="buttons__primary">
                     Review
                 </button>
 
@@ -87,6 +87,10 @@
         return Math.round(p * 100)
     })
 
+    const editEnd = computed(() => {
+        return 'Hello'
+    })
+
 
     // == Functions == //
     function fill() {
@@ -132,6 +136,11 @@
             currentQ.value = currentQ.value + 1
             updateStorage()
         }
+    }
+
+    function review() {
+        updateDisplay('full')
+        updateStorage()
     }
 
     function updateStorage() {

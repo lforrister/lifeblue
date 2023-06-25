@@ -8,6 +8,7 @@
             :id="field.id"
             :name="field.name"
             :min="min"
+            :value="field.input"
             @input="updateInput($event.target.value)"
             class="forms__input"
         >
@@ -16,6 +17,8 @@
 
 <script setup>
     import { computed } from 'vue'
+    import { formatDateHyphen } from '../../plugins/utils'
+
     // == Define Props & Emits == //
     const emit = defineEmits(['update:modelValue'])
     const props = defineProps({
@@ -41,21 +44,7 @@
     }
 
     function formatDate(today) {
-        let month = today.getMonth() + 1
-        let day = today.getDate()
-        let year = today.getFullYear()
-
-        if (month < 10) {
-            month = '0' + month.toString()
-        }
-
-        if (day < 10) {
-            day = 0 + day.toString()
-        }
-
-        let minDate = `${year}-${month}-${day}`
-
-        return minDate
+        return formatDateHyphen(today)
     }
 
 </script>

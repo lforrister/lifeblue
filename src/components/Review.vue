@@ -14,6 +14,8 @@
 </template>
 
 <script setup>
+    import { formatDateString } from '../plugins/utils'
+    
     // == Define Props & Emits == //
     const emit = defineEmits(['update:modelValue', 'validateInput'])
     const props = defineProps({
@@ -32,7 +34,7 @@
         if (field.type === 'checkbox') {
             return field.input.join(', ')
         } else if (field.type === 'date') {
-            return new Date(field.input).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric'})
+            return formatDateString(field.input, { month: 'long', day: 'numeric', year: 'numeric'})
         }
 
         return field.input
