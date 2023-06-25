@@ -77,6 +77,8 @@
         let valCount = notValid.value.filter((valField) => inputsVal.includes(valField))
         let passValidation = !valCount.length
 
+        console.log('pass val?', passValidation)
+
         return !passValidation || !passRequired
     })
 

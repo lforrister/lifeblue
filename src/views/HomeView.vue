@@ -2,7 +2,7 @@
 	<main class="homeView__main">
 		<Nav />
 		<Header />
-		<div class="homeView__wrapper" id="info-form" :style="style">
+		<div class="homeView__wrapper" id="info-form">
 			<div class="homeView__form">
 				<Form />
 			</div>
