@@ -35,6 +35,7 @@
         border-top-right-radius: 12px;
         border-top-left-radius: 12px;
         position: relative;
+        background-image: $grey-gradient;
 
         @media screen and (min-width: $breakpoint-md) {
             width: calc(100% + $spacing-80);

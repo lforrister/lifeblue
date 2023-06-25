@@ -20,7 +20,7 @@
     import { formatDateHyphen } from '../../utilities/utils'
 
     // == Define Props & Emits == //
-    const emit = defineEmits(['update:modelValue'])
+    const emit = defineEmits(['update:modelValue', 'checkEndDate'])
     const props = defineProps({
         field: {
             type: Object,

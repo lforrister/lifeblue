@@ -52,13 +52,13 @@
 
 		&:focus,
 		&:hover {
-			background: linear-gradient(to left top, $sky-blue, $iceberg);
+			background: $sky-gradient;
 		}
 	}
 
 	.pulseButton__bg {
 		animation: pulse 5s ease infinite;
-		background: linear-gradient(to left top, $light-ocean, $iceberg);
+		background: $light-blue-gradient;
 	}
 
 

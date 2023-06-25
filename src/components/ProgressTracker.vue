@@ -34,7 +34,7 @@
     }
 
     .progressTracker__bar {
-        background-image: linear-gradient(to right, $dark-ocean , $light-ocean);
+        background-image: $ocean-gradient;
         position: absolute;
         height: 10px;
     }

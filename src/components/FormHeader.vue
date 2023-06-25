@@ -36,7 +36,7 @@
 
 <style lang="scss">
     .formHeader__container {
-        background-image: linear-gradient(to right, $ocean , $dark-ocean);
+        background-image: $ocean-gradient;
         color: white;
         margin-left: calc($spacing-24 * -1);
         margin-right: calc($spacing-24 * -1);

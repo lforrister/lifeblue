@@ -1,5 +1,5 @@
 <template>
-    <div class="form__container">
+    <div class="form__container"> {{ editable}}
         <FormHeader v-if="display !== 'finished'" :index="currentQ" :display="display"/>
         <ProgressTracker v-if="display !== 'finished'" :percent="progress" :display="display"/>
  
@@ -25,7 +25,7 @@
             </div>
 
             <div v-else-if="display === 'full'" class="form__buttons">
-                <button class="buttons__primary" :class="disabled ? 'is-disabled' : ''" @click.prevent="submit">Submit</button>
+                <button class="buttons__primary" :class="disabled || editable ? 'is-disabled' : ''" @click.prevent="submit">Submit</button>
             </div>
 
             <Submitted v-else />
@@ -163,7 +163,7 @@
     }
 
     function submit() {
-        if (!disabled.value) {
+        if (!disabled.value && !editable.value) {
             display.value = 'finished'
             clearStorage()
         }

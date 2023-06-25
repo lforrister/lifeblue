@@ -27,7 +27,7 @@
     flex-direction: column;
     min-height: 100vh;
     background: $grey-light;
-    background-image: linear-gradient(to bottom right, $grey-light , $metallic);
+    background-image: $grey-gradient;
     
   }
 

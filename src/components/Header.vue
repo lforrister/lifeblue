@@ -34,7 +34,7 @@
 
 <style lang="scss">
     .header__container {
-        background-image: linear-gradient(to left, $ocean , $dark-ocean);
+        background-image: $ocean-gradient;
     }
 
     .header__content {

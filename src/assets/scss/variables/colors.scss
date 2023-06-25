@@ -11,3 +11,7 @@ $dark-ocean: #1e3c72;
 $light-ocean: #457fca;
 $iceberg: #AAD7EC;
 $metallic: #D7DDE8;
+$grey-gradient: linear-gradient(to bottom right, $grey-light , $metallic);
+$ocean-gradient: linear-gradient(to right, $ocean , $dark-ocean);
+$sky-gradient: linear-gradient(to left top, $sky-blue, $iceberg);
+$light-blue-gradient: linear-gradient(to left top, $light-ocean, $iceberg);
