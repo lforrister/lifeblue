@@ -18,7 +18,7 @@
     import Radio from './Fields/Radio.vue'
     import Select from './Fields/Select.vue'
     import Text from './Fields/Text.vue'
-    import { debouncing, validation } from '../plugins/utils'
+    import { debouncing, validation } from '../utilities/utils'
     import { ref } from 'vue'
 
     // == Define Props & Emits == //

@@ -17,7 +17,7 @@
 
 <script setup>
     import { computed } from 'vue'
-    import { formatDateHyphen } from '../../plugins/utils'
+    import { formatDateHyphen } from '../../utilities/utils'
 
     // == Define Props & Emits == //
     const emit = defineEmits(['update:modelValue'])

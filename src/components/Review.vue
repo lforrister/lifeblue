@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-    import { formatDateString } from '../plugins/utils'
+    import { formatDateString } from '../utilities/utils'
     
     // == Define Props & Emits == //
     const emit = defineEmits(['update:modelValue', 'validateInput'])
