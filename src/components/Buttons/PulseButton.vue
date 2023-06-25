@@ -1,9 +1,9 @@
 <template>
     <div class="pulseButton__container">
     	<div class="pulseButton__bg"></div>
-		<div class="pulseButton__button">
+		<button class="pulseButton__button">
 			<ArrowDown />
-		</div>
+		</button>
     </div>
 </template>
 
@@ -46,8 +46,13 @@
 		outline: none;
 
 		svg {
-		height: 38px;
-		fill: $dark-ocean;
+			height: 38px;
+			fill: $dark-ocean;
+		}
+
+		&:focus,
+		&:hover {
+			background: linear-gradient(to left top, $sky-blue, $iceberg);
 		}
 	}
 
