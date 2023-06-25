@@ -15,26 +15,6 @@
     }
 }
 
-// first parameter - 'mobile', second - 'desktop'
-@mixin image-wrapper-ratio($padding-percent-m, $padding-percent-d) {
-    overflow: hidden;
-    padding-top: $padding-percent-m;
-    position: relative;
-
-    img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    @media screen and (min-width: $breakpoint-ml) {
-        padding-top: $padding-percent-d;
-    }
-}
-
 .image__figure {
     @include image-figure;
 }

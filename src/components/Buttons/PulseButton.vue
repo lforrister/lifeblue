@@ -41,7 +41,7 @@
 		align-items: center;
 		position: absolute;
 		border: none;
-		background: $grey-light;
+		background: $cloud;
 		cursor: pointer;
 		outline: none;
 

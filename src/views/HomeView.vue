@@ -26,14 +26,13 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: $grey-light;
-    background-image: $grey-gradient;
+    background: $cloud;
+    background-image: $mist-gradient;
     
   }
 
   .homeView__wrapper {
     @include wrapper;
-    @include min-height;
     display: flex;
     justify-content: center;
     align-items: center;

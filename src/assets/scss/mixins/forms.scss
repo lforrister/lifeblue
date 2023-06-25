@@ -7,14 +7,14 @@
     width: calc(100% - $spacing-8);
     margin-top: $spacing-16;
     border-color: transparent;
-    border: 1px solid $silver;
+    border: 1px solid $stars;
     border-radius: 4px;
     padding: 6px 8px;
     font-family: $raleway;
 
     &:focus {
         outline: none !important;
-        border: 2px solid $blue-deep;
+        border: 2px solid $lake-blue;
     }
 }
 
@@ -51,7 +51,7 @@
     z-index: 100;
 
     &:focus + .forms__checkbox {
-        border: 2px solid $silver;
+        border: 2px solid $stars;
         width: 16px;
         height:  16px;
 
@@ -68,7 +68,7 @@
     left: 0;
     height: 18px;
     width: 18px;
-    background: $grey;
+    background: $mountain-mist;
     border-radius: 2px;
 
     &.is-checked {
@@ -105,7 +105,7 @@
     z-index: 100;
 
     &:focus + .forms__radio {
-        border: 2px solid $silver;
+        border: 2px solid $stars;
     }
 }
 
@@ -116,7 +116,7 @@
     height: 18px;
     width: 18px;
     border-radius: 50%;
-    background-color: $grey;
+    background-color: $mountain-mist;
 
     &:after {
         content: '';
@@ -168,8 +168,8 @@
 // ==== ERRORS ==== //
 
 @mixin error {
-    color: $red;
-    border: 1px solid $red;
+    color: $fire-red;
+    border: 1px solid $fire-red;
     border-radius: 4px;
     background: rgba(237, 33, 58, 0.05);
     font-family: $raleway;

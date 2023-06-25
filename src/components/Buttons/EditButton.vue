@@ -28,7 +28,7 @@
 		justify-content: center;
 		align-items: center;
 		border: 2px solid $dark-ocean;
-		background: $grey-light;
+		background: $cloud;
 		cursor: pointer;
 		outline: none;
 
@@ -37,10 +37,10 @@
         }
 
         &.is-disabled {
-            border: 2px solid $silver;
+            border: 2px solid $stars;
 
             svg {
-                stroke: $silver;
+                stroke: $stars;
             }
 
             &:hover {

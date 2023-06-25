@@ -17,11 +17,6 @@ $header-height-min: 250px;
     }
 }
 
-@mixin min-height {
-    //min-height: calc(100vh - $nav-height - $footer-height - $header-height-min);
-    //min-height: 100vh;
-}
-
 .wrapper {
     @include wrapper;
 }

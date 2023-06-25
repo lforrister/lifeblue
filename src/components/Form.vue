@@ -213,7 +213,7 @@
 
     .form__answer {
         font-family: $raleway;
-        border-bottom: 1px solid $silver;
+        border-bottom: 1px solid $stars;
         padding-bottom: $spacing-8;
     }
 

@@ -28,7 +28,7 @@
 		justify-content: center;
 		align-items: center;
 		border: 2px solid $dark-ocean;
-		background: $grey-light;
+		background: $cloud;
 		cursor: pointer;
 		outline: none;
 

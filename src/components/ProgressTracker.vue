@@ -30,7 +30,7 @@
         position: relative;
         height: 10px;
         margin: $spacing-24 0;
-        background: $grey-light;
+        background: $cloud;
     }
 
     .progressTracker__bar {
