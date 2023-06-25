@@ -46,7 +46,7 @@
     .header__copy {
         padding: $spacing-48 0 $spacing-24 0;
 
-        @media screen and (min-width: $breakpoint-md) {
+        @media screen and (min-width: $breakpoint-sm) {
             width: 50%;
             padding: $spacing-64 0 $spacing-48 0;
         }
@@ -54,7 +54,7 @@
     
     .header__image {
 
-        @media screen and (min-width: $breakpoint-md) {
+        @media screen and (min-width: $breakpoint-sm) {
             width: 50%;
             margin-left: -5%;
         }

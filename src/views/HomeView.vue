@@ -1,13 +1,13 @@
 <template>
 	<main>
-		<Nav ref="nav" />
-		<Header ref="header" />
-		<div class="homeView__wrapper">
+		<Nav id="nav" />
+		<Header id="header" />
+		<div class="homeView__wrapper" :style="style">
 			<div class="homeView__form">
 				<Form />
 			</div>
 		</div>
-		<Footer ref="footer" />
+		<Footer id="footer" />
 	</main>
 </template>
 
@@ -16,6 +16,29 @@
   import Form from '../components/Form.vue'
   import Header from '../components/Header.vue'
   import Nav from '../components/Nav.vue'
+  import { onMounted, onUnmounted, ref } from 'vue'
+
+  const style = ref('')
+
+  function setHeight() {
+    let header = document.getElementById('header')
+    let headerHeight = header.offsetHeight
+    let navHeight = 40
+    let footerHeight = 46
+    let spacer = 75
+    let height = headerHeight + navHeight + footerHeight - spacer
+    style.value = `min-height: calc(100vh - ${height}px);`
+  }
+
+  onMounted(() => {
+    setHeight()
+    window.addEventListener('resize', setHeight)
+  })
+
+  onUnmounted(() => {
+    window.removeEventListener('resize', setHeight)
+  })
+
 </script>
 
 

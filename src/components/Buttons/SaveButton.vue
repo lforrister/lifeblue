@@ -1,7 +1,7 @@
 <template>
-    <div class="SaveButton__button" :class="direction"> 
+    <button class="SaveButton__button" :class="direction"> 
         <SaveIcon />
-    </div>
+    </button>
 </template>
 
 <script setup>
@@ -20,8 +20,8 @@
 <style lang="scss">
 
 	.SaveButton__button {
-		width: 25px;
-		height: 25px;
+		width: 30px;
+		height: 30px;
 		border-radius: 100%;
 		font-family: $raleway;
 		display: flex;
@@ -33,8 +33,11 @@
 		outline: none;
 
 		svg {
-            height: 18px;
             stroke: $dark-ocean;
+        }
+
+        &:focus {
+            box-shadow:rgba(30, 60, 114, 0.5) 0px 4px 12px;
         }
 	}
 

@@ -1,7 +1,7 @@
 <template>
-    <div class="editButton__button" :class="direction"> 
+    <button class="editButton__button" :class="direction"> 
         <EditIcon />
-    </div>
+    </button>
 </template>
 
 <script setup>
@@ -20,8 +20,8 @@
 <style lang="scss">
 
 	.editButton__button {
-		width: 25px;
-		height: 25px;
+		width: 30px;
+		height: 30px;
 		border-radius: 100%;
 		font-family: $raleway;
 		display: flex;
@@ -33,7 +33,6 @@
 		outline: none;
 
 		svg {
-            height: 18px;
             stroke: $dark-ocean;
         }
 
@@ -47,6 +46,10 @@
             &:hover {
                 cursor: not-allowed;
             }
+        }
+
+        &:focus {
+            box-shadow:rgba(30, 60, 114, 0.5) 0px 4px 12px;
         }
 	}
 

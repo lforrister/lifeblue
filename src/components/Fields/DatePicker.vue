@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-    import { computed } from 'vue'
+    import { computed, onMounted } from 'vue'
     import { formatDateHyphen } from '../../plugins/utils'
 
     // == Define Props & Emits == //
@@ -46,5 +46,14 @@
     function formatDate(today) {
         return formatDateHyphen(today)
     }
+
+    function setFocus() {
+        let el = document.getElementById(props.field.id)
+        el.focus()
+    }
+
+    onMounted(() => {
+        setFocus()
+    })
 
 </script>

@@ -35,7 +35,6 @@
 
     function setFocus() {
         let el = document.getElementById(props.field.id)
-        console.log('el', el)
         el.focus()
     }
 

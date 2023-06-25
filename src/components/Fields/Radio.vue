@@ -36,9 +36,7 @@
     }
 
     function setFocus() {
-        console.log('field', props.field.options[0].id)
         let el = document.getElementById(props.field.options[0].id)
-        console.log('el', el)
         el.focus()
     }
 
