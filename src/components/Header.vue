@@ -28,6 +28,12 @@
     function scrollToForm() {
         let form = document.getElementById('info-form')
         form.scrollIntoView({behavior: 'smooth'})
+
+        //set focus
+        let input = document.getElementsByTagName('input')[0]
+        if (input) {
+            input.focus()
+        }
     }
 
 </script>
