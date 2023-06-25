@@ -1,11 +1,11 @@
 <template>
     <div class="arrowButton__button" :class="direction"> 
-        <ArrowDown />
+        <ArrowIcon />
     </div>
 </template>
 
 <script setup>
-    import ArrowDown from '../icons/ArrowDown.vue'
+    import ArrowIcon from '../icons/ArrowIcon.vue'
 
     // == Define Props & Emits == //
     const props = defineProps({
@@ -14,7 +14,6 @@
             default: ''
         }
     })
-
 </script>
 
 <style lang="scss">

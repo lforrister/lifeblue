@@ -2,13 +2,13 @@
     <div class="pulseButton__container">
     	<div class="pulseButton__bg"></div>
 		<button class="pulseButton__button">
-			<ArrowDown />
+			<ArrowIcon />
 		</button>
     </div>
 </template>
 
 <script setup>
-    import ArrowDown from '../icons/ArrowDown.vue';
+    import ArrowIcon from '../icons/ArrowIcon.vue';
 
 </script>
 

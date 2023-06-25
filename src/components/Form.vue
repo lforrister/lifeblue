@@ -1,5 +1,5 @@
 <template>
-    <div class="form__container"> {{ editable}}
+    <div class="form__container">
         <FormHeader v-if="display !== 'finished'" :index="currentQ" :display="display"/>
         <ProgressTracker v-if="display !== 'finished'" :percent="progress" :display="display"/>
  

@@ -1,5 +1,5 @@
 <template>
-    <button class="SaveButton__button" :class="direction"> 
+    <button class="saveButton__button" :class="direction"> 
         <SaveIcon />
     </button>
 </template>
@@ -19,7 +19,7 @@
 
 <style lang="scss">
 
-	.SaveButton__button {
+	.saveButton__button {
 		width: 30px;
 		height: 30px;
 		border-radius: 100%;
