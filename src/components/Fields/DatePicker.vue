@@ -30,12 +30,7 @@ const props = defineProps({
 
 // == Computed Properties == //
 const min = computed(() => {
-    if (props.field.id === 'start_date') {
-        return formatDate(new Date())
-    } else {
-        let start = localStorage.getItem('start_date')
-        return start ?? formateDate(new Date())
-    }
+    return formatDate(new Date())
 })
 
 // == Functions == //

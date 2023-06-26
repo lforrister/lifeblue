@@ -23,7 +23,7 @@ const props = defineProps({
 const copy = computed(() => {
     if (props.display === 'full') {
         return 'Step 3: Review & Submit'
-    } else if (props.index < 4) {
+    } else if (props.index < 5) {
         return 'Step 1: Your Information'
     } else if (props.index <= 10) {
         return 'Step 2: Your Dream Trip'

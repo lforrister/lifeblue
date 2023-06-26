@@ -32,6 +32,41 @@
         "errorMessage": "Please enter a valid phone number."
     },
     {
+        "type": "select",
+        "id": "referral",
+        "name": "Referral",
+        "label": "How did you hear about us?",
+        "required": true,
+        "placeholder": "Please select an option",
+        "options": [
+            {
+                "id": "google",
+                "value": "Google",
+                "label": "Google"
+            },
+            {
+                "id": "instagram",
+                "value": "Instagram",
+                "label": "Instagram"
+            },
+            {
+                "id": "facebook",
+                "value": "Facebook",
+                "label": "Facebook"
+            },
+            {
+                "id": "word",
+                "value": "Word of Mouth",
+                "label": "Word of Mouth"
+            },
+            {
+                "id": "other",
+                "value": "Other",
+                "label": "Other"
+            }
+        ]
+    },
+    {
         "type": "text",
         "id": "destination",
         "name": "Destination",
@@ -67,6 +102,13 @@
                 "label": "$10,000 +"
             }
         ]
+    },
+    {
+        "type": "date",
+        "id": "start_date",
+        "name": "Start Date",
+        "label": "What is the ideal start date for your trip?",
+        "required": true
     },
     {
         "type": "checkbox",
@@ -125,19 +167,5 @@
                 "label": "No"
             }
         ]
-    },
-    {
-        "type": "date",
-        "id": "start_date",
-        "name": "Start Date",
-        "label": "What is the ideal start date for your trip?",
-        "required": true
-    },
-    {
-        "type": "date",
-        "id": "end_date",
-        "name": "End Date",
-        "label": "What is the ideal end date for your trip?",
-        "required": true
     }
 ]
