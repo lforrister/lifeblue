@@ -10,7 +10,11 @@
                     :field="field"
                     @update-validation="updateValidation"
                 />
-                <Review v-else-if="display === 'full'" :field="field" :editable="editable ?? editable" />
+                <Review
+                    v-else-if="display === 'full'"
+                    :field="field"
+                    :editable="editable ?? editable"
+                />
                 <SaveButton
                     v-if="editable === field"
                     @click.prevent="save(field)"
@@ -22,7 +26,6 @@
                     @click.prevent="edit(field)"
                     class="form__review-btn"
                     :class="editable && editable.id !== field.id ? 'is-disabled' : ''"
-                    
                 />
             </div>
 
@@ -188,7 +191,8 @@ function review() {
 }
 
 function setFocus(active) {
-    let id = active.type === 'checkbox' || active.type === 'radio' ? active.options[0].id : active.id
+    let id =
+        active.type === 'checkbox' || active.type === 'radio' ? active.options[0].id : active.id
     let el = document.getElementById(id)
     el.focus()
 }

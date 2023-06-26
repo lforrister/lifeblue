@@ -8,10 +8,7 @@
             v-else
             v-model="field.input"
             :field="field"
-            @validate-input="
-                updateDisabled(field),
-                setErrors(field)
-            "
+            @validate-input="updateDisabled(field), setErrors(field)"
         />
 
         <p v-if="errors.find((err) => err.id === field.id)" class="forms__error">

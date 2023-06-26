@@ -22,7 +22,7 @@ import Nav from '../components/Nav.vue'
 .homeView__main {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: calc(100vh + $spacing-48);
     background: $cloud;
     background-image: $mist-gradient;
 }
