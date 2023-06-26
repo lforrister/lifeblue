@@ -66,7 +66,7 @@
 </template>
 
 <script setup>
-import { computed, onBeforeMount, ref } from 'vue'
+import { computed, onBeforeMount, onUpdated, ref, nextTick } from 'vue'
 import EditButton from './Buttons/EditButton.vue'
 import FormHeader from './FormHeader.vue'
 import ProgressTracker from './ProgressTracker.vue'
@@ -157,7 +157,14 @@ function next() {
     if (!disabled.value) {
         currentQ.value = currentQ.value + 1
         updateStorage()
+        nextTick(setFocus)
     }
+}
+
+function setFocus() {
+    let id = current.value.type === 'checkbox' || current.value.type === 'radio' ? current.value.options[0].id : current.value.id
+    let el = document.getElementById(id)
+    el.focus()
 }
 
 function review() {
@@ -210,6 +217,10 @@ function clearStorage() {
 
 onBeforeMount(() => {
     fill()
+})
+
+onUpdated(() => {
+    console.log('updated!')
 })
 </script>
 
