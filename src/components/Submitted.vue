@@ -10,7 +10,6 @@
 
 <style lang="scss">
 .submitted__container {
-    
     h3 {
         font-size: $type-24;
         font-weight: 600;

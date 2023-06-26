@@ -5,10 +5,7 @@
         </div>
         <div v-for="(img, index) in image" :key="index" class="formHeader__image-container">
             <figure :class="index !== displayImg ? 'is-hidden' : ''" class="formHeader__figure">
-                <img 
-                    :src="img.url"
-                    :alt="alt ?? 'A BlueMoon vacation image.'"
-                />
+                <img :src="img.url" :alt="alt ?? 'A BlueMoon vacation image.'" />
             </figure>
         </div>
     </div>
@@ -33,21 +30,20 @@ const props = defineProps({
 const image = [
     {
         url: new URL('../assets/images/mountains.jpg', import.meta.url),
-        alt: "A couple leans on each other while seeing the view of the mountains."
+        alt: 'A couple leans on each other while seeing the view of the mountains.'
     },
     {
         url: new URL('../assets/images/maldives.jpg', import.meta.url),
-        alt: "Landscape shot of huts over the ocean in the Maldives."
-    }, 
+        alt: 'Landscape shot of huts over the ocean in the Maldives.'
+    },
     {
         url: new URL('../assets/images/hands.jpg', import.meta.url),
-        alt: "A woman leads her partner towards a vibrant lake."
+        alt: 'A woman leads her partner towards a vibrant lake.'
     },
     {
         url: new URL('../assets/images/couple.jpg', import.meta.url),
-        alt: "A couple stands on a deck watching a sunset over a lake."
+        alt: 'A couple stands on a deck watching a sunset over a lake.'
     }
-
 ]
 
 const displayImg = ref(0)
@@ -70,7 +66,6 @@ const copy = computed(() => {
 
     return "Let's Get Started"
 })
-
 </script>
 
 <style lang="scss">
