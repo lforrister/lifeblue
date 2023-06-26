@@ -6,13 +6,13 @@
         <form class="form__form">
             <div v-for="field in displayForm" :key="field.id" class="form__section">
                 <EditField
-                    v-if="display === 'single' || editable === field.id"
+                    v-if="display === 'single' || editable === field"
                     :field="field"
                     @update-validation="updateValidation"
                 />
-                <Review v-else-if="display === 'full'" :field="field" :editable="editable" />
+                <Review v-else-if="display === 'full'" :field="field" :editable="editable ?? editable" />
                 <SaveButton
-                    v-if="editable === field.id"
+                    v-if="editable === field"
                     @click.prevent="save(field)"
                     class="form__review-btn"
                     :class="disabled ? 'is-disabled' : ''"
@@ -21,7 +21,8 @@
                     v-else-if="display === 'full'"
                     @click.prevent="edit(field)"
                     class="form__review-btn"
-                    :class="editable !== '' && editable !== field.id ? 'is-disabled' : ''"
+                    :class="editable && editable.id !== field.id ? 'is-disabled' : ''"
+                    
                 />
             </div>
 
@@ -79,7 +80,7 @@ import Submitted from './Submitted.vue'
 // == Declaring Variables == //
 const currentQ = ref(Number(localStorage.getItem('index')) ?? 0)
 const display = ref('single')
-const editable = ref('')
+const editable = ref(null)
 const quiz = ref(questions)
 const notValid = ref([])
 
@@ -157,19 +158,39 @@ function next() {
     if (!disabled.value) {
         currentQ.value = currentQ.value + 1
         updateStorage()
-        nextTick(setFocus)
+        nextTick(() => setFocus(current.value))
+    }
+}
+function edit(field) {
+    if (!editable.value || editable.value === field) {
+        editable.value = field
+        nextTick(() => setFocus(editable.value))
     }
 }
 
-function setFocus() {
-    let id = current.value.type === 'checkbox' || current.value.type === 'radio' ? current.value.options[0].id : current.value.id
-    let el = document.getElementById(id)
-    el.focus()
+function save() {
+    if (!disabled.value) {
+        editable.value = null
+        updateStorage()
+    }
+}
+
+function submit() {
+    if (!disabled.value && !editable.value) {
+        display.value = 'finished'
+        clearStorage()
+    }
 }
 
 function review() {
     updateDisplay('full')
     updateStorage()
+}
+
+function setFocus(active) {
+    let id = active.type === 'checkbox' || active.type === 'radio' ? active.options[0].id : active.id
+    let el = document.getElementById(id)
+    el.focus()
 }
 
 function updateStorage() {
@@ -187,33 +208,6 @@ function updateDisplay(type) {
     display.value = type
 }
 
-function edit(field) {
-    if (editable.value === '' || editable.value === field.id) {
-        editable.value = field.id
-    }
-
-    nextTick(() => {
-        console.log('next!!!')
-        let el = document.getElementById(editable.value)
-        console.log('el', el)
-        el.focus()
-    })
-}
-
-function save() {
-    if (!disabled.value) {
-        editable.value = ''
-        updateStorage()
-    }
-}
-
-function submit() {
-    if (!disabled.value && !editable.value) {
-        display.value = 'finished'
-        clearStorage()
-    }
-}
-
 function clearStorage() {
     quiz.value.forEach((q) => {
         localStorage.removeItem(q.id)
@@ -224,10 +218,6 @@ function clearStorage() {
 
 onBeforeMount(() => {
     fill()
-})
-
-onUpdated(() => {
-    console.log('updated!')
 })
 </script>
 

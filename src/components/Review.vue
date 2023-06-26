@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="editable != field.id" class="review__container">
+        <div class="review__container">
             <div class="review__row">
                 <h4>
                     {{ field.label }}
@@ -22,10 +22,6 @@ const props = defineProps({
     field: {
         type: Object,
         default: null
-    },
-    editable: {
-        type: String,
-        default: ''
     }
 })
 
