@@ -36,7 +36,7 @@
         "id": "referral",
         "name": "Referral",
         "label": "How did you hear about us?",
-        "required": true,
+        "required": false,
         "placeholder": "Please select an option",
         "options": [
             {

@@ -231,13 +231,16 @@ onBeforeMount(() => {
     padding: $spacing-24;
     padding-top: 0;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    border-radius: 12px;
     background: white;
 
-    @media screen and (min-width: $breakpoint-md) {
+    @media screen and (min-width: $breakpoint-xs) {
+        min-width: 400px;
+    }
+
+    @media screen and (min-width: $breakpoint-sm) {
         padding: $spacing-40;
         padding-top: 0;
-        width: 500px;
+        min-width: 500px;
     }
 }
 

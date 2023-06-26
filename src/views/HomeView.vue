@@ -33,15 +33,16 @@ import Nav from '../components/Nav.vue'
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    flex: 1;
 }
 
 .homeView__form {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: $spacing-32 0;
+    padding: $spacing-40 0;
 
-    @media screen and (min-width: $breakpoint-md) {
+    @media screen and (min-width: $breakpoint-sm) {
         padding: $spacing-88 0;
     }
 }
