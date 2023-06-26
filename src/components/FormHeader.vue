@@ -1,10 +1,10 @@
 <template>
     <div class="formHeader__container">
-        <div class="formHeader__title">
+        <div v-if="copy" class="formHeader__title">
             <h3>{{ copy }}</h3>
         </div>
         <div v-for="(img, index) in image" :key="index" class="formHeader__image-container">
-            <figure :class="index !== display ? 'is-hidden' : ''" class="formHeader__figure">
+            <figure :class="index !== displayImg ? 'is-hidden' : ''" class="formHeader__figure">
                 <img 
                     :src="img.url"
                     :alt="alt ?? 'A BlueMoon vacation image.'"
@@ -42,22 +42,29 @@ const image = [
     {
         url: new URL('../assets/images/hands.jpg', import.meta.url),
         alt: "A woman leads her partner towards a vibrant lake."
+    },
+    {
+        url: new URL('../assets/images/couple.jpg', import.meta.url),
+        alt: "A couple stands on a deck watching a sunset over a lake."
     }
 
 ]
 
-const display = ref(0)
+const displayImg = ref(0)
 
 // == Computed Properties == //
 const copy = computed(() => {
-    if (props.display === 'full') {
-        display.value = 2
+    if (props.display === 'finished') {
+        displayImg.value = 3
+        return ''
+    } else if (props.display === 'full') {
+        displayImg.value = 2
         return 'Step 3: Review & Submit'
     } else if (props.index < 5) {
-        display.value = 0
+        displayImg.value = 0
         return 'Step 1: Your Information'
     } else if (props.index <= 10) {
-        display.value = 1
+        displayImg.value = 1
         return 'Step 2: Your Dream Trip'
     }
 
@@ -91,7 +98,7 @@ const copy = computed(() => {
     position: relative;
     @include image-figure;
     height: 225px;
-    transition: opacity 0.5s ease-in;
+    transition: opacity 0.3s ease-in;
 
     &:after {
         position: absolute;

@@ -1,6 +1,6 @@
 <template>
     <div class="form__container">
-        <FormHeader v-if="display !== 'finished'" :index="currentQ" :display="display" />
+        <FormHeader :index="currentQ" :display="display" />
         <ProgressTracker v-if="display !== 'finished'" :percent="progress" :display="display" />
 
         <form class="form__form">
@@ -234,13 +234,13 @@ onBeforeMount(() => {
     background: white;
 
     @media screen and (min-width: $breakpoint-xs) {
-        min-width: 400px;
+        width: 400px;
     }
 
     @media screen and (min-width: $breakpoint-sm) {
         padding: $spacing-40;
         padding-top: 0;
-        min-width: 500px;
+        width: 500px;
     }
 }
 
