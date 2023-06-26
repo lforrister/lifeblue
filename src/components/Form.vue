@@ -49,6 +49,7 @@
                     v-if="currentQ === quiz.length - 1"
                     @click.prevent="review"
                     class="buttons__primary"
+                    :class="disabled ? 'is-disabled' : ''"
                 >
                     Review
                 </button>

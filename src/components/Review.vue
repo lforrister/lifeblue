@@ -3,7 +3,7 @@
         <div class="review__container">
             <div class="review__row">
                 <h4>
-                    {{ field.label }}
+                    {{ field.label }} {{ field.required ? '*' : '' }}
                 </h4>
             </div>
             <p class="review__response">

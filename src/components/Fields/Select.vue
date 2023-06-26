@@ -1,7 +1,7 @@
 <template>
     <div>
         <label :for="field.id" class="forms__input-label">
-            {{ field.label }}
+            {{ field.label }} {{ field.required ? '*' : '' }}
         </label>
         <select
             :name="field.name"

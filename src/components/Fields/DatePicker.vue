@@ -1,7 +1,7 @@
 <template>
     <div v-if="field">
         <label :for="field.id" class="forms__input-label">
-            {{ field.label }}
+            {{ field.label }} {{ field.required ? '*' : '' }}
         </label>
         <input
             :type="field.type"

@@ -1,6 +1,8 @@
 <template>
     <fieldset class="forms__fieldset">
-        <legend class="forms__input-label checkbox__legend">{{ field.label }}</legend>
+        <legend class="forms__input-label checkbox__legend">
+            {{ field.label }} {{ field.required ? '*' : '' }}
+        </legend>
 
         <div v-for="option in field.options" :key="field.id" class="checkbox__options">
             <input
