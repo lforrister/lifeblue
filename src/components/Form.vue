@@ -191,6 +191,13 @@ function edit(field) {
     if (editable.value === '' || editable.value === field.id) {
         editable.value = field.id
     }
+
+    nextTick(() => {
+        console.log('next!!!')
+        let el = document.getElementById(editable.value)
+        console.log('el', el)
+        el.focus()
+    })
 }
 
 function save() {
